@@ -24,8 +24,8 @@ const host="http://localhost:5000";
    <Navbar/>
    <Routes>
       <Route exact path='/' element={<Landing/> }/>
-      <Route exact path='/dashboard' element={<Login/>}/>
-      <Route exact path='/dashboard' element={<Blog/>}/>
+      <Route exact path='/login' element={<Login/>}/>
+      <Route exact path='/blog' element={<Blog/>}/>
       <Route exact path='/dashboard' element={<DashBoard/>}/>
    </Routes>
    

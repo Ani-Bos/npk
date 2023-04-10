@@ -1,8 +1,10 @@
 import React from 'react'
-
+import Weather from '../components/Weather'
 function DashBoard() {
   return (
-    <div></div>
+    <div>
+      <Weather/>
+    </div>
   )
 }
 
