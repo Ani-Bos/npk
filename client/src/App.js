@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-}from 'react-router-dom';
+} from 'react-router-dom';
 import TaskState from './context/tasks/TaskState'
 import DashBoard from './pages/DashBoard';
 import Landing from './pages/Landing';
@@ -30,7 +30,7 @@ const host="http://localhost:5000";
    </Routes>
    
    </Router>
-   </TaskState>
+    </TaskState>
   );
 }
 
