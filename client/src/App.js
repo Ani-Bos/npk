@@ -4,8 +4,12 @@ import {
   Routes,
   Route,
 }from 'react-router-dom';
-
-
+import TaskState from './context/tasks/TaskState'
+import DashBoard from './pages/DashBoard';
+import Landing from './pages/Landing';
+import Login from './pages/Login';
+import Blog from './pages/Blog';
+import Navbar from './components/Navbar'
 function App() {
   useEffect(() => {
    
@@ -17,9 +21,12 @@ const host="http://localhost:5000";
   return (
     <TaskState>
     <Router>
-   
+   <Navbar/>
    <Routes>
-  
+      <Route exact path='/' element={<Landing/> }/>
+      <Route exact path='/dashboard' element={<Login/>}/>
+      <Route exact path='/dashboard' element={<Blog/>}/>
+      <Route exact path='/dashboard' element={<DashBoard/>}/>
    </Routes>
    
    </Router>
