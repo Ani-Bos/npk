@@ -11,6 +11,8 @@ import Login from './pages/Login';
 import Blog from './pages/Blog';
 // import Navbar from './components/Navbar'
 import Home from './components/Home'
+import Navbar from './components/Navbar'
+import DiseasePredictor from './pages/DiseasePredictor';
 function App() {
   useEffect(() => {
    
@@ -28,6 +30,7 @@ const host="http://localhost:5000";
       <Route exact path='/login' element={<Login/>}/>
       <Route exact path='/blog' element={<Blog/>}/>
       <Route exact path='/dashboard' element={<DashBoard/>}/>
+      <Route exact path='/disease_predictor' element={<DiseasePredictor/>}/>
    </Routes>
    
    </Router>

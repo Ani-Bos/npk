@@ -8,10 +8,10 @@ function Weather() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((e)=>{
             fetch(
-                `https://api.openweathermap.org/data/2.5/weather?lat=${e.coords.latitude}&lon=${e.coords.longitude}&appid=1ae67afbcfd2c8ace165befd341a1d70`
+                `https://api.openweathermap.org/data/2.5/weather?lat=${e.coords.latitude}&lon=${e.coords.longitude}&appid=1ae67afbcfd2c8ace165befd341a1d70&units=metric`
               )
                 .then((res) => res.json())
-                .then((data) => setWeather(data))
+                .then((data) => {setWeather(data);console.log(data)})
                 .catch((error) => console.log(error.message));
         });
       } else {
@@ -24,21 +24,24 @@ function Weather() {
    fetchWeather();
     
   }, [])
-  
+  let date=new Date().toDateString();
   return (
     <>
    
-        <div className="card  text-black font-bold  grid  grid-cols-2 items-center ">
+        <div className="card bg-gray-100 text-black font-bold  grid  grid-cols-2 items-center">
         
-          <div>
+          <div className="flex flex-col justify-center pb-3">
           <img
             src={`http://openweathermap.org/img/w/${weather?.weather[0]?.icon}.png`}
             alt=""
-            className="w-[100px] m-auto"
+            className="w-[50px] m-auto"
           />
-          <h2 className="text-xl font-bold mb-2 text-center">{weather?.main?.temp}&deg;</h2>
+          <h2 className="text-md font-bold text-center ">{weather?.main?.temp}&deg;</h2>
           <p className="text-center">{weather?.weather[0]?.main}</p></div>
-          <h4 className="text-xl text-center">{weather?.name}</h4>
+          <div>
+          <h4 className="text-md text-center">{weather?.name}</h4>
+            <div> {date}</div>
+          </div>
           
         </div>
       
