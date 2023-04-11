@@ -9,6 +9,8 @@ import DashBoard from './pages/DashBoard';
 import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Blog from './pages/Blog';
+// import Navbar from './components/Navbar'
+import Home from './components/Home'
 import Navbar from './components/Navbar'
 import DiseasePredictor from './pages/DiseasePredictor';
 function App() {
@@ -22,9 +24,9 @@ const host="http://localhost:5000";
   return (
     <TaskState>
     <Router>
-   <Navbar/>
+   {/* <Navbar/> */}
    <Routes>
-      <Route exact path='/' element={<Landing/> }/>
+      <Route exact path='/' element={<Home/> }/>
       <Route exact path='/login' element={<Login/>}/>
       <Route exact path='/blog' element={<Blog/>}/>
       <Route exact path='/dashboard' element={<DashBoard/>}/>
