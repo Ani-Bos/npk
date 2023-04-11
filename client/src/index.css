@@ -8,3 +8,6 @@
     /* background-size: cover; */
     height: 20vh;
 }
+.card-overlay {
+    background: rgba(0, 0, 0, 0.6);
+  }
