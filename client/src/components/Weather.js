@@ -40,7 +40,7 @@ function Weather() {
           <p className="text-center">{weather?.weather[0]?.main}</p></div>
           <div>
           <h4 className="text-md text-center">{weather?.name}</h4>
-            <div> {date}</div>
+            <div className="text-md text-center"> {date}</div>
           </div>
           
         </div>
