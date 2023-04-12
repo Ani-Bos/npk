@@ -14,6 +14,8 @@ import Home from './components/Home'
 // import Navbar from './components/Navbar'
 import DiseasePredictor from './pages/DiseasePredictor';
 import GetOtp from './components/GetOtp'
+import { UserAuthContextProvider } from './context/tasks/UserAuthContext'
+import ProtectedRoute from './components/ProtectedRoute';
 function App() {
   useEffect(() => {
    
@@ -22,9 +24,26 @@ function App() {
 
 const host="http://localhost:5000";
   return (
-    <TaskState>
+    // <TaskState>
+    //   <Router>
+    //     <Navbar />
+    //     <Routes>
+    //       <Route exact path="/GetOtp" element={<GetOtp />} />
+    //       <Route exact path="/" element={<Home />} />
+    //       <Route exact path="/login" element={<Login />} />
+    //       <Route exact path="/blog" element={<Blog />} />
+    //       <Route exact path="/dashboard" element={<DashBoard />} />
+    //       <Route
+    //         exact
+    //         path="/disease_predictor"
+    //         element={<DiseasePredictor />}
+    //       />
+    //     </Routes>
+    //   </Router>
+    // </TaskState>
+    <UserAuthContextProvider>
       <Router>
-        <Navbar/>
+        <Navbar />
         <Routes>
           <Route exact path="/GetOtp" element={<GetOtp />} />
           <Route exact path="/" element={<Home />} />
@@ -38,7 +57,7 @@ const host="http://localhost:5000";
           />
         </Routes>
       </Router>
-    </TaskState>
+    </UserAuthContextProvider>
   );
 }
 
