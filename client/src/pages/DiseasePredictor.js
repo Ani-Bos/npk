@@ -1,8 +1,13 @@
 import React,{useState} from 'react'
 import $ from 'jquery'
 import * as tf from '@tensorflow/tfjs';
-function DiseasePredictor() {
-    const [img, setImg] = useState("https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg")
+import CLASSES from '../static/classes'
+import ProgressBar from '../components/Loader';
+import {useNavigate} from 'react-router-dom'
+function DiseasePredictor({setUpdatedisease}) {
+  const [load, setLoad] = useState(0)
+  let navigate=useNavigate();
+      const [img, setImg] = useState("https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg")
         const handlechange=()=>{
             const file=document.getElementById('file_input').files[0];
             const image=window.URL.createObjectURL(file);
@@ -18,21 +23,34 @@ function DiseasePredictor() {
 	reader.readAsDataURL(filer);
         }
         const handlepredict=async()=>{
+          setLoad(10)
             const model = await tf.loadGraphModel('model.json');
+            setLoad(40);
             console.log(model);
             let img = $('#temp').get(0);
-let tensor=tf.browser.fromPixels(img).resizeNearestNeighbor([224,224]).toFloat().div(tf.scalar(255.0)).expandDims()
+let tensorr1=tf.browser.fromPixels(img).resizeNearestNeighbor([224,224]).toFloat();
+const offset = tf.scalar(255.0);
+const normalized = tf.scalar(1.0).sub(tensorr1.div(offset));
 
- let predictions=await model.predict(tensor).data()
- let top5 = Array.from(predictions).map(function (p, i) { // this is Array.map
+const tensorr = normalized.expandDims(0)
+console.log(tensorr)
+let predictions=await model.predict(tensorr).softmax().data()
+setLoad(70)
+let tensorres= predictions
+ console.log(tensorres)
+ let top = Array.from(tensorres).map(function (p, i) { // this is Array.map
    return {
      probability: p,
     // we are selecting the value from the obj
+    className: CLASSES[i]
    };
  }).sort(function (a, b) {
    return b.probability - a.probability;
- }).slice(0, 1);
-console.log(top5)
+ })
+console.log(top)
+setUpdatedisease(top)
+setLoad(100);
+navigate('/disease_predictor_result')
 // top5.forEach(function (resp) {
 //   //  $("#prediction-list").append(`<li>${p.className}: ${p.probability.toFixed(6)}</li>`);
  
@@ -56,7 +74,10 @@ console.log(top5)
        </div>
     </div>
 </div>
-
+<div className='my-6'>
+<ProgressBar progressPercentage={load}/>
+</div>
+  
     </div>
   )
 }
