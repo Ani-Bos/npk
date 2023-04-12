@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -16,11 +16,14 @@ import DiseasePredictor from './pages/DiseasePredictor';
 import GetOtp from './components/GetOtp'
 import { UserAuthContextProvider } from './context/tasks/UserAuthContext'
 import ProtectedRoute from './components/ProtectedRoute';
+import DisesasePredRes from './pages/DisesasePredRes';
 function App() {
+
   useEffect(() => {
    
     // eslint-disable-next-line
 }, [])
+const [updatedisease, setUpdatedisease] = useState([]);
 
 const host="http://localhost:5000";
   return (
@@ -53,8 +56,14 @@ const host="http://localhost:5000";
           <Route
             exact
             path="/disease_predictor"
-            element={<DiseasePredictor />}
+            element={<DiseasePredictor setUpdatedisease={setUpdatedisease}/>}
           />
+          <Route
+            exact
+            path="/disease_predictor_result"
+            element={<DisesasePredRes diseasedata={updatedisease}/>}
+          />
+        
         </Routes>
       </Router>
     </UserAuthContextProvider>
