@@ -9,9 +9,9 @@ import DashBoard from './pages/DashBoard';
 import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Blog from './pages/Blog';
-// import Navbar from './components/Navbar'
-import Home from './components/Home'
 import Navbar from './components/Navbar'
+import Home from './components/Home'
+// import Navbar from './components/Navbar'
 import DiseasePredictor from './pages/DiseasePredictor';
 import GetOtp from './components/GetOtp'
 function App() {
@@ -24,7 +24,7 @@ const host="http://localhost:5000";
   return (
     <TaskState>
       <Router>
-        {/* <Navbar/> */}
+        <Navbar/>
         <Routes>
           <Route exact path="/GetOtp" element={<GetOtp />} />
           <Route exact path="/" element={<Home />} />

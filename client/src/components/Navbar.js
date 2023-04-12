@@ -241,7 +241,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 function Navbar() {
   return (
     <div>
-      <nav className="bg-[#fffa92] dark:bg-[#fffa92]  w-full z-20 top-0 left-0 border-b border-transparent ">
+      <nav className="bg-white dark:bg-white w-full z-20 top-0 left-0 border-b border-transparent ">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a href="https://flowbite.com/" className="flex items-center">
             <img
