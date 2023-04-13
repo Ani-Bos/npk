@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import test from '../static/apple.jpeg'
+import test from '../static/Apple.jpeg'
 function DisesasePredRes({diseasedata}) {
   const [loadmore, setLoadmore] = useState(false)
   

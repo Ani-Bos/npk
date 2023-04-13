@@ -14,7 +14,7 @@ export default function LabelBottomNavigation() {
   };
 
   return (
-    <BottomNavigation sx={{width:'100vw',position:'fixed',bottom:0 ,backgroundColor:"rgb(198 207 221)"}} value={value} onChange={handleChange}>
+    <BottomNavigation sx={{width:'100vw',position:'fixed',left:0,bottom:0 ,backgroundColor:"rgb(198 207 221)"}} value={value} onChange={handleChange}>
       <BottomNavigationAction
         label="Recents"
         value="recents"

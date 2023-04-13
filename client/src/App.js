@@ -15,6 +15,7 @@ import Home from './components/Home'
 import DiseasePredictor from './pages/DiseasePredictor';
 import GetOtp from './components/GetOtp'
 import DisesasePredRes from './pages/DisesasePredRes';
+import Recommended_Crop from './pages/Recommended_Crop';
 function App() {
 
   useEffect(() => {
@@ -43,6 +44,11 @@ const host="http://localhost:5000";
             exact
             path="/disease_predictor_result"
             element={<DisesasePredRes diseasedata={updatedisease}/>}
+          />
+          <Route
+            exact
+            path="/recommended_crop"
+            element={<Recommended_Crop />}
           />
         
         </Routes>
