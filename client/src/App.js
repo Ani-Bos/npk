@@ -19,13 +19,14 @@ import ProtectedRoute from './components/ProtectedRoute';
 import DisesasePredRes from './pages/DisesasePredRes';
 import Recommended_Crop from './pages/Recommended_Crop';
 function App() {
-  const [extraDetails, setExtraDetails] = useState({nitrogen:50.55,phosphrous:53.36,potassium:48.14})
+  const [extraDetails, setExtraDetails] = useState({nitrogen:50.55,phosphrous:53.36,potassium:48.14,ph:0.77})
   useEffect(() => {
    
     // eslint-disable-next-line
 }, [])
 const [updatedisease, setUpdatedisease] = useState([]);
-
+const [cropdata, setCropdata] = useState({})
+const [change, setChange] = useState(false)
 const host="http://localhost:5000";
   return (
     // <TaskState>
@@ -53,7 +54,7 @@ const host="http://localhost:5000";
           <Route exact path="/" element={<Home />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/blog" element={<Blog />} />
-          <Route exact path="/dashboard" element={<DashBoard />} />
+          <Route exact path="/dashboard" element={<DashBoard cropdata={cropdata} change={change} setCropdata={setCropdata}/>} />
           <Route
             exact
             path="/disease_predictor"
@@ -67,7 +68,7 @@ const host="http://localhost:5000";
           <Route
             exact
             path="/recommended_crop"
-            element={<Recommended_Crop />}
+            element={<Recommended_Crop setExtraDetails={setExtraDetails} setChange={setChange} extraDetails={extraDetails} cropdata={cropdata} setCropdata={setCropdata} />}
           />
         
         </Routes>

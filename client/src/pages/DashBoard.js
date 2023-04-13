@@ -8,9 +8,14 @@ import {useNavigate} from 'react-router-dom'
 import $ from 'jquery'
 import CROP from '../static/crop'
 import * as tf from '@tensorflow/tfjs';
-function DashBoard() {
+import queryString from 'query-string';
+import {useLocation} from 'react-router-dom'
+function DashBoard({cropdata,setCropdata,change}) {
+  // let location=useLocation()
+  // const {change} = queryString.parse(location.search); 
+  
   let navigate=useNavigate();
-  const [cropdata, setCropdata] = useState([])
+ 
       const reccomdcrop=async()=>{
         const model = await tf.loadGraphModel('cropmodel/model.json');
         
@@ -30,7 +35,7 @@ if (navigator.geolocation) {
         )
           .then((res) => res.json())
           .then(async(data) => {
-            const tensorr=tf.tensor([[50.55 ,53.36 ,48.14 ,data?.main?.temp,data?.main?.humidity,0.77,200]])
+            const tensorr=tf.tensor([[50.55 ,53.36 ,48.14 ,data?.main?.temp,data?.main?.humidity,0.77,300]])
 let predictions=await model.predict(tensorr).data()
 
 let tensorres= predictions
@@ -45,7 +50,7 @@ className:CROP[i]
 return b.probability - a.probability;
 })
 console.log(top);
-setCropdata(top)
+setCropdata(top[0])
           })
           .catch((error) => console.log(error.message));
   });
@@ -57,13 +62,17 @@ setCropdata(top)
       }
       useEffect(() => {
        
+        if(!change)
         reccomdcrop()
 
       }, [])
       
   return (
     <div className='container m-auto mb-[5rem]'>
-      <Weather/>
+      {/* <Weather/> */}
+      <div className='font-semibold text-xl px-5'>
+        Welcome, Sachin
+      </div>
       <CropCard recommended={cropdata}/>
       <div className='grid grid-cols-2 gap-2  px-5'>
         <div onClick={()=>navigate('/disease_predictor')}>

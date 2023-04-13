@@ -3,6 +3,7 @@ import $ from 'jquery'
 import * as tf from '@tensorflow/tfjs';
 import CLASSES from '../static/classes'
 import ProgressBar from '../components/Loader';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import {useNavigate} from 'react-router-dom'
 function DiseasePredictor({setUpdatedisease}) {
   const [load, setLoad] = useState(0)
@@ -58,9 +59,12 @@ navigate('/disease_predictor_result')
 //    );
         }
   return (
-    <div className='container m-auto px-5'>
+    <div className='container m-auto px-5 bg-gray-100 h-[100vh]'>
       <img className='hidden' alt="yoyo" id='temp' />
-        <div className='text-center font-bold my-5 text-xl'>Upload Image</div>
+      <div>
+        <button className='font-semibold' onClick={()=>{navigate('/dashboard')}}><ArrowBackIosNewIcon/> Back </button>
+      </div>
+        <div className='text-center font-bold py-7 text-xl'>Upload Image</div>
 <div class="grid grid-cols-[40%_60%] h-[20vh] overflow-hidden bg-white border border-gray-200 rounded-lg shadow flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
   <div className='border border-r-[1px] flex flex-col' style={{backgroundImage:`url(${img})`,backgroundSize:"cover"}}>
   {/* <img class=" rounded-t-lg  md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" src={img} alt=""/> */}
