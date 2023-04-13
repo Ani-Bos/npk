@@ -8,7 +8,7 @@ import PhoneInput from "react-phone-number-input";
 import Cookies from "js-cookie";
 import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
-import { useUserAuth } from '../context/tasks/UserAuthContext'
+import { useUserAuth } from "../context/tasks/UserAuthContext";
 const Login = () => {
   const [error, setError] = useState("");
   const [number, setNumber] = useState("");
@@ -47,48 +47,125 @@ const Login = () => {
 
   return (
     <>
-      <div className="p-4 box">
-        <h2 className="mb-5 text-center">Firebase Phone Auth</h2>
-        {error && <Alert variant="danger">{error}</Alert>}
-        <Form onSubmit={getOtp} style={{ display: !flag ? "block" : "none" }}>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <PhoneInput
-              defaultCountry="IN"
-              value={number}
-              onChange={setNumber}
-              placeholder="Enter Phone Number"
-            />
-            <div id="recaptcha-container"></div>
-          </Form.Group>
-          <div className="button-right">
-            <Link to="/">
-              <Button variant="secondary">Cancel</Button>
-            </Link>
-            &nbsp;
-            <Button type="submit" variant="primary">
-              Send Otp
-            </Button>
-          </div>
-        </Form>
+      <div className="flex items-center min-h-screen  p-4 bg-gray-100 lg:justify-center">
+        <div className="flex flex-col w-full overflow-hidden bg-white rounded-md shadow-lg max md:flex-row md:flex-1 lg:max-w-screen-md">
+          <div className="p-5 bg-white md:flex-1">
+            <h3 className="my-4 text-2xl text-center font-semibold text-gray-700">
+              Account Login
+            </h3>
+            {error && <Alert variant="danger">{error}</Alert>}
+            <Form
+              className="flex flex-col space-y-5"
+              onSubmit={getOtp}
+              style={{ display: !flag ? "block" : "none" }}
+            >
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <div className="flex flex-col space-y-1">
+                  <label
+                    for="name"
+                    className="text-sm font-semibold text-gray-500"
+                  >
+                    Name
+                  </label>
+                  <input
+                    type="name"
+                    id="name"
+                    autofocus
+                    className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-green-200"
+                  />
+                </div>
 
-        <Form onSubmit={verifyOtp} style={{ display: flag ? "block" : "none" }}>
-          <Form.Group className="mb-3" controlId="formBasicOtp">
-            <Form.Control
-              type="otp"
-              placeholder="Enter OTP"
-              onChange={(e) => setOtp(e.target.value)}
-            />
-          </Form.Group>
-          <div className="button-right">
-            <Link to="/">
-              <Button variant="secondary">Cancel</Button>
-            </Link>
-            &nbsp;
-            <Button type="submit" variant="primary">
-              Verify
-            </Button>
+                <div className="flex flex-col space-y-1">
+                  <div className="flex items-center justify-between">
+                    <label
+                      for="number"
+                      className="text-sm font-semibold text-gray-500"
+                    >
+                      Enter Phone Number
+                    </label>
+                  </div>
+                  {/* <input
+                    type="number"
+                    id="number"
+                    className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-green-200"
+                  /> */}
+                  <PhoneInput
+                    className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-green-200"
+                    defaultCountry="IN"
+                    value={number}
+                    onChange={setNumber}
+                    placeholder="Enter Phone Number"
+                  />
+                  <div id="recaptcha-container"></div>
+                </div>
+
+                {/* <PhoneInput
+                      className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-green-200"
+                      defaultCountry="IN"
+                      value={number}
+                      onChange={setNumber}
+                      placeholder="Enter Phone Number"
+                    /> */}
+                {/* <div id="recaptcha-container"></div> */}
+              </Form.Group>
+              {/* <div className="button-right">
+                <Link to="/">
+                  <Button variant="secondary">Cancel</Button>
+                </Link>
+                &nbsp;
+                <Button type="submit" variant="primary">
+                  Send Otp
+                </Button>
+              </div> */}
+              <div className="button-right flex justify-evenly">
+                <Button
+                  type="submit"
+                  className="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-green-500 rounded-md shadow hover:bg-green-600 focus:outline-none focus:ring-green-200 focus:ring-4  "
+                >
+                  Send Otp
+                </Button>
+                &nbsp;
+                <Button className="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-red-500 rounded-md shadow hover:bg-red-600 focus:outline-none focus:ring-red-200 focus:ring-4 ">
+                  Cancel
+                </Button>
+              </div>
+            </Form>
+
+            <Form
+              onSubmit={verifyOtp}
+              style={{ display: flag ? "block" : "none" }}
+            >
+              <Form.Group className="mb-3" controlId="formBasicOtp">
+                <div className="flex flex-col space-y-1">
+                  <label
+                    for="number"
+                    className="text-sm font-semibold text-gray-500"
+                  >
+                    Enter OTP
+                  </label>
+                  <Form.Control
+                    className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-green-200"
+                    type="otp"
+                    // placeholder="Enter OTP"
+                    onChange={(e) => setOtp(e.target.value)}
+                  />
+                </div>
+              </Form.Group>
+              <div className="button-right flex justify-evenly">
+                <Button
+                  type="submit"
+                  className="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-green-500 rounded-md shadow hover:bg-green-600 focus:outline-none focus:ring-green-200 focus:ring-4  "
+                >
+                  Verify OTP
+                </Button>
+                &nbsp;
+                <Button className="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-red-500 rounded-md shadow hover:bg-red-600 focus:outline-none focus:ring-red-200 focus:ring-4 ">
+                  Cancel
+                </Button>
+              </div>
+            </Form>
           </div>
-        </Form>
+        </div>
       </div>
     </>
   );
