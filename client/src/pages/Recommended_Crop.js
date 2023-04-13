@@ -23,7 +23,7 @@ if (navigator.geolocation) {
         )
           .then((res) => res.json())
           .then(async(data) => {
-            const tensorr=tf.tensor([[50.55 ,53.36 ,48.14 ,data?.main?.temp,data?.main?.humidity,0.77,200]])
+            const tensorr=tf.tensor([[50.55 ,53.36 ,48.14 ,data?.main?.temp,data?.main?.humidity,0.77,300]])
 let predictions=await model.predict(tensorr).data()
 
 let tensorres= predictions
@@ -60,7 +60,21 @@ setCropdata(top)
             Recommended Crop for you
         </div>
         <div className='my-5 font-bold'>TOP 5</div>
-      <div>      
+      <div>     
+        <div>
+              <div>Nitrogen</div>
+              <div>
+                <input type="text" name="" id="" />
+                </div>       
+              <div>Nitrogen</div>
+              <div>
+                <input type="text" name="" id="" />
+                </div>       
+              <div>Nitrogen</div>
+              <div>
+                <input type="text" name="" id="" />
+                </div>       
+          </div> 
 <ol class="relative border-l border-gray-200 dark:border-gray-700">                  
    { 
    cropdata?.slice(0,5)?.map((e,i)=>{

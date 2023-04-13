@@ -19,7 +19,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import DisesasePredRes from './pages/DisesasePredRes';
 import Recommended_Crop from './pages/Recommended_Crop';
 function App() {
-
+  const [extraDetails, setExtraDetails] = useState({nitrogen:50.55,phosphrous:53.36,potassium:48.14})
   useEffect(() => {
    
     // eslint-disable-next-line
