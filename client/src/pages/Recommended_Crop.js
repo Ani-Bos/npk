@@ -1,23 +1,10 @@
-<<<<<<< HEAD
-import React, { useState, useEffect } from 'react'
-import CROP from '../static/crop'
-import * as tf from '@tensorflow/tfjs';
-import {useNavigate} from 'react-router-dom'
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import cropdetails from '../static/cropdetails';
-import RAINFALL from '../static/rainfall';
-import ProgressBar from '../components/Loader';
-function Recommended_Crop({ setExtraDetails, extraDetails,cropdata, setCropdata,setChange }) {
-  let navigate=useNavigate();
-  const [loadmore, setLoadmore] = useState(false)
-  const [cropData, setCropData] = useState([])
-  const [active, setActive] = useState(false)
-=======
 import React, { useState, useEffect } from "react";
 import CROP from "../static/crop";
 import * as tf from "@tensorflow/tfjs";
 import { useNavigate } from "react-router-dom";
+import RAINFALL from '../static/rainfall'
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ProgressBar from "../components/Loader";
 function Recommended_Crop({
   setExtraDetails,
   extraDetails,
@@ -28,7 +15,6 @@ function Recommended_Crop({
   let navigate = useNavigate();
   const [loadmore, setLoadmore] = useState(false);
   const [cropData, setCropData] = useState([]);
->>>>>>> 642311a1ac7b22a43db54203c7314693e61a6df4
   const [extraActive, setExtraActive] = useState(false);
   const [loader, setLoader] = useState(0);
   const handlechange = (e) => {
@@ -57,65 +43,21 @@ function Recommended_Crop({
         const weather=await  fetch(
           `https://api.openweathermap.org/data/2.5/weather?lat=${e.coords.latitude}&lon=${e.coords.longitude}&appid=1ae67afbcfd2c8ace165befd341a1d70&units=metric`
         )
-<<<<<<< HEAD
-
-         const data=await weather.json()
-         setLoader(30)
-const stateinfo=await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&zoom=18&addressdetails=1&lat=${e.coords.latitude}&lon=${e.coords.longitude}`)
-const d=await stateinfo.json();
-setLoader(70)
-let month=new Date().toString().split(' ')[1].toUpperCase()
-console.log(month)
-const res=d?.address?.state?.split(' ')?.join('')?.toString()?.toUpperCase()
-const rainfall=RAINFALL[res][month]
-console.log(rainfall);
-            const tensorr=tf.tensor([[parseFloat(extraDetails?.nitrogen) ,parseFloat(extraDetails?.phosphrous),parseFloat(extraDetails?.potassium ),data?.main?.temp,data?.main?.humidity,0.77,rainfall]])
-            let predictions = await model.predict(tensorr).data()
-            setLoader(90)
-            console.log(typeof extraDetails.potassium)
-            let tensorres = predictions
-            console.log(tensorres)
-            let top = Array.from(tensorres).map(function (p, i) { // this is Array.map
-              return {
-                probability: p,
-                // we are selecting the value from the obj
-                description:cropdetails[i],
-                className: CROP[i]
-              };
-            }).sort(function (a, b) {
-              return b.probability - a.probability;
-            })
-            console.log(top);
-            setCropData(top)
-            setLoader(100)
-          }
-          
-          
-      
-          )
-      
-    } else {
-      alert("Geolocation is not supported by this browser.");
-    }
-
-    
-    
-  }
-=======
-          .then((res) => res.json())
-          .then(async (data) => {
-            const tensorr = tf.tensor([
-              [
-                parseFloat(extraDetails.nitrogen),
-                parseFloat(extraDetails.phosphrous),
-                parseFloat(extraDetails.potassium),
-                data?.main?.temp,
-                data?.main?.humidity,
-                0.77,
-                300,
-              ],
-            ]);
+        setLoader(20)
+        const data=await weather.json()
+        setLoader(30)
+        const stateinfo=await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&zoom=18&addressdetails=1&lat=${e.coords.latitude}&lon=${e.coords.longitude}`)
+        setLoader(40)
+        const d=await stateinfo.json();
+        setLoader(50)
+        let month=new Date().toString().split(' ')[1].toUpperCase()
+        console.log(month)
+        const res=d?.address?.state?.split(' ')?.join('')?.toString()?.toUpperCase()
+        const rainfall=RAINFALL[res][month]
+        console.log(rainfall);
+                    const tensorr=tf.tensor([[parseFloat(extraDetails?.nitrogen) ,parseFloat(extraDetails?.phosphrous),parseFloat(extraDetails?.potassium) ,data?.main?.temp,data?.main?.humidity,0.77,rainfall]])
             let predictions = await model.predict(tensorr).data();
+            setLoader(80)
             console.log(typeof extraDetails.potassium);
             let tensorres = predictions;
             console.log(tensorres);
@@ -133,17 +75,15 @@ console.log(rainfall);
               });
             console.log(top);
             setCropData(top);
+            setLoader(100)
+
           })
-          .catch((error) => {
-            console.log(error.message);
-            console.log(cropData);
-          });
-      });
+          
+      
     } else {
       alert("Geolocation is not supported by this browser.");
     }
   };
->>>>>>> 642311a1ac7b22a43db54203c7314693e61a6df4
   useEffect(() => {
     reccomdcrop();
   }, []);
@@ -170,12 +110,11 @@ console.log(rainfall);
           }}
           className="inline-block rounded-3xl px-4 outline-1 py-1.5 text-base font-medium leading-7 text-gray-800 shadow-sm ring-1 ring-gray-600 hover:bg-transparent hover:outline rounded-full"
         >
-          Add More
+          Add NPK value
         </button>
       </div>
       <div>
-        {extraActive && (
-          <div>
+        {extraActive && (<>          <div>
             <div>
               <div>
                 <label
@@ -243,6 +182,7 @@ console.log(rainfall);
                 class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 onChange={handlechange}
               />
+
             </div>
 
             <div className="my-5">
@@ -254,45 +194,20 @@ console.log(rainfall);
               >
                 Submit
               </button>
+             
             </div>
           </div>
-<<<<<<< HEAD
-          <div>
-            <label for="phosphrous" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Phosphrous</label>
-            <input type="number" id="phosphrous" value={extraDetails.phosphrous} name="phosphrous" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handlechange} />
-          </div>
-          <div>
-            <label for="potassium" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Potassium</label>
-            <input type="number" id="potassium" value={extraDetails.potassium} name="potassium" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handlechange} />
-          </div>
-          <div>
-            <label for="ph" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">pH value</label>
-            <input type="number" id="ph" min={0} max={14} name="ph" value={extraDetails.ph} class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handlechange} />
-          </div>
 
+         {((loader>0)&&(loader<100))&& <div className="my-5">
           <ProgressBar progressPercentage={loader}/>
-
-          <div className='my-5'>
-            <button className='rounded px-2 py-2 font-semibold bg-green-500' onClick={() => {  reccomdcrop(); }}>Submit</button>
-          </div>
-        </div>}
-        <div className='my-5 font-bold'>Top Recommendation</div>
-        <ol class="relative border-l border-gray-200 dark:border-gray-700">
-          {
-            cropData?.slice(0, 5)?.map((e, i) => {
-              return (
-                <div key={i} className={`${(e?.probability * 100).toFixed(2)==='0.00'?"hidden":"block"}`}>
-                  <li class="mb-10 ml-6">
-                    <span class="absolute flex items-center justify-center w-3 h-3 bg-blue-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
-                      <svg height="15px" width="15px" version="1.1" id="_x35_" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 512 512"  >
-=======
-        )}
+          </div>}
+          </>
+ )}
         <div className="my-5 font-bold">TOP 5</div>
         <ol class="relative border-l border-gray-200 dark:border-gray-700">
           {cropData?.slice(0, 5)?.map((e, i) => {
             return (
-              <div key={i}>
+              <div key={i} className={`${(e?.probability * 100).toFixed(2)==='0.00'?"hidden":"block"}`}>
                 <li class="mb-10 ml-6">
                   <span class="absolute flex items-center justify-center w-3 h-3 bg-blue-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
                     <svg
@@ -304,7 +219,6 @@ console.log(rainfall);
                       viewBox="0 0 512 512"
                     >
                       <g>
->>>>>>> 642311a1ac7b22a43db54203c7314693e61a6df4
                         <g>
                           <path
                             style={{ fill: "#75A874" }}
@@ -388,30 +302,6 @@ console.log(rainfall);
                     >
                       Change
                     </span>
-<<<<<<< HEAD
-                    <div className='w-[50%] m-auto'>
-                      <img src={`${host}/static/${e?.className?.split(' ')[0]}.jpg`} alt="temp" className='w-full' />
-                    </div>
-                    <h3 class="flex items-center justify-between my-2 text-xl font-semibold text-gray-900 dark:text-black">{e?.className}<span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 ml-3" onClick={()=>{handlecropchange(e)}}>Change</span></h3>
-                    <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{`${(e?.probability * 100).toFixed(2)} %`}</time>
-                    <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">{e?.description}</p>
-
-                  </li>
-                </div>
-
-              )
-            })
-          }
-
-        </ol>
-      </div>
-      <section>
-        <div className={`cursor-pointer my-5 text-center ${(cropData[5]?.probability * 100).toFixed(2)==='0.00'?"hidden":"block"}`}>
-          <button onClick={() => setLoadmore(!loadmore)} className='bg-gray-200 px-2 py-2 font-semibold rounded-md'>
-            <div>
-              {loadmore === false ? "expand" : "collapse"}
-            </div>
-=======
                   </h3>
                   <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{`${(
                     e?.probability * 100
@@ -434,7 +324,6 @@ console.log(rainfall);
             className="bg-gray-200 px-2 py-2 font-semibold rounded-md"
           >
             <div>{loadmore === false ? "expand" : "collapse"}</div>
->>>>>>> 642311a1ac7b22a43db54203c7314693e61a6df4
           </button>
         </div>
         {loadmore && (
@@ -529,12 +418,6 @@ console.log(rainfall);
                           className="w-full"
                         />
                       </div>
-<<<<<<< HEAD
-                      <h3 class="flex justify-between items-center my-2 text-xl font-semibold text-gray-900 dark:text-black">{e?.className}<span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 ml-3" onClick={()=>{handlecropchange(e)}} >Change</span></h3>
-                      <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{`${(e?.probability * 100).toFixed(2)} %`}</time>
-                      <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">{e?.description}</p>
-
-=======
                       <h3 class="flex justify-between items-center my-2 text-xl font-semibold text-gray-900 dark:text-black">
                         {e?.className}
                         <span
@@ -554,7 +437,6 @@ console.log(rainfall);
                         layout, charts, kanban board, calendar, and pre-order
                         E-commerce & Marketing pages.
                       </p>
->>>>>>> 642311a1ac7b22a43db54203c7314693e61a6df4
                     </li>
                   </div>
                 );

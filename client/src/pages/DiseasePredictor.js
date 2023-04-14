@@ -1,21 +1,3 @@
-<<<<<<< HEAD
-import React,{useState} from 'react'
-import $ from 'jquery'
-import * as tf from '@tensorflow/tfjs';
-import CLASSES from '../static/classes'
-import ProgressBar from '../components/Loader';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import {useNavigate} from 'react-router-dom'
-function DiseasePredictor({setUpdatedisease}) {
-  const [load, setLoad] = useState(0)
-  let navigate=useNavigate();
-      const [img, setImg] = useState("https://t3.ftcdn.net/jpg/03/45/05/92/360_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg")
-        const handlechange=()=>{
-            const file=document.getElementById('file_input').files[0];
-            const image=window.URL.createObjectURL(file);
-            setImg(image)
-            let reader = new FileReader();
-=======
 import React, { useState } from "react";
 import $ from "jquery";
 import * as tf from "@tensorflow/tfjs";
@@ -27,14 +9,13 @@ function DiseasePredictor({ setUpdatedisease }) {
   const [load, setLoad] = useState(0);
   let navigate = useNavigate();
   const [img, setImg] = useState(
-    "https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg"
+    "https://t3.ftcdn.net/jpg/03/45/05/92/360_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg"
   );
   const handlechange = () => {
     const file = document.getElementById("file_input").files[0];
     const image = window.URL.createObjectURL(file);
     setImg(image);
     let reader = new FileReader();
->>>>>>> 642311a1ac7b22a43db54203c7314693e61a6df4
     reader.onload = function () {
       let dataURL = reader.result;
       $(`#temp`).attr("src", dataURL);
@@ -85,50 +66,23 @@ function DiseasePredictor({ setUpdatedisease }) {
     //    );
   };
   return (
-<<<<<<< HEAD
-    <div className='xs:container m-auto px-5 bg-gray-100 h-[100vh]'>
-      <img className='hidden' alt="yoyo" id='temp' />
-     
-        <div className='text-center font-bold py-7 text-xl'>Upload Image</div>
-        <div className='m-auto'>
-<div class="grid grid-cols-[40%_60%] md:grid-cols-[30%_70%]   md:h-[30vh] h-[20vh] m-auto overflow-hidden bg-white border border-gray-200 rounded-lg shadow flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-  <div className='border border-r-[1px] flex flex-col' style={{backgroundImage:`url(${img})`,backgroundSize:"contain"}}>
-  {/* <img class=" rounded-t-lg  md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" src={img} alt=""/> */}
-    </div>  
-    <div class="flex flex-col justify-between p-4 leading-normal">
-       <div className='flex flex-col gap-4'>
-       <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file"  onChange={handlechange}/>
-       <div>
-        <button onClick={handlepredict} className='px-1 py-1 bg-slate-400 rounded text-sm'>Predict disease</button>
-       </div>
-       </div>
-    </div>
-</div>
-</div>
-<div className='my-6'>
-<ProgressBar progressPercentage={load}/>
-</div>
-  
-    </div>
-  )
-=======
-    <div className="container m-auto px-5 bg-gray-100 h-[100vh]">
+    <div className="xs:container m-auto px-5 bg-gray-100 h-[100vh]">
       <img className="hidden" alt="yoyo" id="temp" />
       <div>
-        <button
+        {/* <button
           className="font-semibold"
           onClick={() => {
             navigate("/dashboard");
           }}
         >
           <ArrowBackIosNewIcon /> Back{" "}
-        </button>
+        </button> */}
       </div>
       <div className="text-center font-bold py-7 text-xl">Upload Image</div>
-      <div class="grid grid-cols-[40%_60%] h-[20vh] overflow-hidden bg-white border border-gray-200 rounded-lg shadow flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+      <div class="grid md:grid-cols[30%_70%] grid-cols-[40%_60%] m-auto h-[20vh] md:h-[40vh] overflow-hidden bg-white border border-gray-200 rounded-lg shadow flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
           <div
             className="border border-r-[1px] flex flex-col"
-            style={{ backgroundImage: `url(${img})`, backgroundSize: "cover" }}
+            style={{ backgroundImage: `url(${img})`, backgroundSize: "contain" }}
           >
             {/* <img class=" rounded-t-lg  md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" src={img} alt=""/> */}
           </div>
@@ -157,7 +111,6 @@ function DiseasePredictor({ setUpdatedisease }) {
 
     </div>
   );
->>>>>>> 642311a1ac7b22a43db54203c7314693e61a6df4
 }
 
 export default DiseasePredictor;
