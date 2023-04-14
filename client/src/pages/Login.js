@@ -96,7 +96,7 @@ const Login = () => {
                     onChange={setNumber}
                     placeholder="Enter Phone Number"
                   />
-                  <div id="recaptcha-container"></div>
+                  <div id="recaptcha-container" onTouch={true}></div>
                 </div>
 
                 {/* <PhoneInput
