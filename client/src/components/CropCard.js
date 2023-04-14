@@ -10,11 +10,11 @@ function CropCard({recommended}) {
   return (
     <div className=" my-7 px-5 md:px-0">
       <div className="font-bold text-xl pb-4">Recommended Crop</div>
-      <div className="flex flex-col items-center bg-white border border-gray-200 rounded-lg  md:flex-row hover:bg-gray-100 dark:border-gray-200 dark:bg-gray-200 dark:hover:bg-gray-200  m-auto shadow-lg">
-        <div className="w-[100%] h-[100px] overflow-clip">
+      <div className="flex flex-col items-center bg-white border border-gray-200 rounded-lg   hover:bg-gray-100 dark:border-gray-200 dark:bg-gray-200 dark:hover:bg-gray-200  m-auto shadow-lg">
+        <div className="w-[100%] h-[100px] md:h-[40vh] overflow-clip">
           {" "}
           <img
-            class="object-cover w-full rounded-t-lg h-[100%] md:h-96  md:w-48 md:rounded-none md:rounded-l-lg"
+            class="object-cover w-full rounded-t-lg h-[100%]  md:rounded-none md:rounded-l-lg"
             src={`${host}/static/${img}.jpg`}
             alt=""
           />

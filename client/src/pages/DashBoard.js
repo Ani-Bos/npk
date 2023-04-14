@@ -8,8 +8,10 @@ import {useNavigate} from 'react-router-dom'
 import $ from 'jquery'
 import CROP from '../static/crop'
 import * as tf from '@tensorflow/tfjs';
+import Map from '../components/Map'
 import queryString from 'query-string';
 import {useLocation} from 'react-router-dom'
+import RAINFALL from '../static/rainfall' 
 function DashBoard({cropdata,setCropdata,change}) {
   // let location=useLocation()
   // const {change} = queryString.parse(location.search); 
@@ -29,13 +31,19 @@ function DashBoard({cropdata,setCropdata,change}) {
 // console.log(tensorr)
 
 if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition((e)=>{
-      fetch(
+  navigator.geolocation.getCurrentPosition(async(e)=>{
+    const weather=await  fetch(
           `https://api.openweathermap.org/data/2.5/weather?lat=${e.coords.latitude}&lon=${e.coords.longitude}&appid=1ae67afbcfd2c8ace165befd341a1d70&units=metric`
         )
-          .then((res) => res.json())
-          .then(async(data) => {
-            const tensorr=tf.tensor([[50.55 ,53.36 ,48.14 ,data?.main?.temp,data?.main?.humidity,0.77,300]])
+         const data=await weather.json()
+const stateinfo=await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&zoom=18&addressdetails=1&lat=${e.coords.latitude}&lon=${e.coords.longitude}`)
+const d=await stateinfo.json();
+let month=new Date().toString().split(' ')[1].toUpperCase()
+console.log(month)
+const res=d?.address?.state?.split(' ')?.join('')?.toString()?.toUpperCase()
+const rainfall=RAINFALL[res][month]
+console.log(rainfall);
+            const tensorr=tf.tensor([[50.55 ,53.36 ,48.14 ,data?.main?.temp,data?.main?.humidity,0.77,rainfall]])
 let predictions=await model.predict(tensorr).data()
 
 let tensorres= predictions
@@ -51,8 +59,7 @@ return b.probability - a.probability;
 })
 console.log(top);
 setCropdata(top[0])
-          })
-          .catch((error) => console.log(error.message));
+        
   });
 } else {
  alert( "Geolocation is not supported by this browser.");
@@ -68,11 +75,12 @@ setCropdata(top[0])
       }, [])
       
   return (
-    <div className='container m-auto mb-[5rem]'>
+    <div className='container m-auto  mb-[5rem] '>
       {/* <Weather/> */}
       <div className='font-semibold text-xl px-5'>
         Welcome, Sachin
       </div>
+      {/* <Map/> */}
       <CropCard recommended={cropdata}/>
       <div className='grid grid-cols-2 gap-2  px-5'>
         <div onClick={()=>navigate('/disease_predictor')}>

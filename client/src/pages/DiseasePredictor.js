@@ -8,7 +8,7 @@ import {useNavigate} from 'react-router-dom'
 function DiseasePredictor({setUpdatedisease}) {
   const [load, setLoad] = useState(0)
   let navigate=useNavigate();
-      const [img, setImg] = useState("https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg")
+      const [img, setImg] = useState("https://t3.ftcdn.net/jpg/03/45/05/92/360_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg")
         const handlechange=()=>{
             const file=document.getElementById('file_input').files[0];
             const image=window.URL.createObjectURL(file);
@@ -59,14 +59,13 @@ navigate('/disease_predictor_result')
 //    );
         }
   return (
-    <div className='container m-auto px-5 bg-gray-100 h-[100vh]'>
+    <div className='xs:container m-auto px-5 bg-gray-100 h-[100vh]'>
       <img className='hidden' alt="yoyo" id='temp' />
-      <div>
-        <button className='font-semibold' onClick={()=>{navigate('/dashboard')}}><ArrowBackIosNewIcon/> Back </button>
-      </div>
+     
         <div className='text-center font-bold py-7 text-xl'>Upload Image</div>
-<div class="grid grid-cols-[40%_60%] h-[20vh] overflow-hidden bg-white border border-gray-200 rounded-lg shadow flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-  <div className='border border-r-[1px] flex flex-col' style={{backgroundImage:`url(${img})`,backgroundSize:"cover"}}>
+        <div className='m-auto'>
+<div class="grid grid-cols-[40%_60%] md:grid-cols-[30%_70%]   md:h-[30vh] h-[20vh] m-auto overflow-hidden bg-white border border-gray-200 rounded-lg shadow flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+  <div className='border border-r-[1px] flex flex-col' style={{backgroundImage:`url(${img})`,backgroundSize:"contain"}}>
   {/* <img class=" rounded-t-lg  md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" src={img} alt=""/> */}
     </div>  
     <div class="flex flex-col justify-between p-4 leading-normal">
@@ -77,6 +76,7 @@ navigate('/disease_predictor_result')
        </div>
        </div>
     </div>
+</div>
 </div>
 <div className='my-6'>
 <ProgressBar progressPercentage={load}/>

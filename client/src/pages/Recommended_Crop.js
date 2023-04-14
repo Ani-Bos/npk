@@ -3,11 +3,16 @@ import CROP from '../static/crop'
 import * as tf from '@tensorflow/tfjs';
 import {useNavigate} from 'react-router-dom'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import cropdetails from '../static/cropdetails';
+import RAINFALL from '../static/rainfall';
+import ProgressBar from '../components/Loader';
 function Recommended_Crop({ setExtraDetails, extraDetails,cropdata, setCropdata,setChange }) {
   let navigate=useNavigate();
   const [loadmore, setLoadmore] = useState(false)
   const [cropData, setCropData] = useState([])
+  const [active, setActive] = useState(false)
   const [extraActive, setExtraActive] = useState(false);
+  const [loader, setLoader] = useState(0);
   const handlechange = (e) => {
     setExtraDetails({ ...extraDetails, [e.target.name]: e.target.value });
   }
@@ -29,14 +34,25 @@ navigate('/dashboard')
     // console.log(tensorr)
 
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((e) => {
-        fetch(
+      navigator.geolocation.getCurrentPosition(async(e) => {
+        setLoader(10)
+        const weather=await  fetch(
           `https://api.openweathermap.org/data/2.5/weather?lat=${e.coords.latitude}&lon=${e.coords.longitude}&appid=1ae67afbcfd2c8ace165befd341a1d70&units=metric`
         )
-          .then((res) => res.json())
-          .then(async (data) => {
-            const tensorr = tf.tensor([[parseFloat(extraDetails.nitrogen), parseFloat(extraDetails.phosphrous), parseFloat(extraDetails.potassium), data?.main?.temp, data?.main?.humidity, 0.77, 300]])
+
+         const data=await weather.json()
+         setLoader(30)
+const stateinfo=await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&zoom=18&addressdetails=1&lat=${e.coords.latitude}&lon=${e.coords.longitude}`)
+const d=await stateinfo.json();
+setLoader(70)
+let month=new Date().toString().split(' ')[1].toUpperCase()
+console.log(month)
+const res=d?.address?.state?.split(' ')?.join('')?.toString()?.toUpperCase()
+const rainfall=RAINFALL[res][month]
+console.log(rainfall);
+            const tensorr=tf.tensor([[parseFloat(extraDetails?.nitrogen) ,parseFloat(extraDetails?.phosphrous),parseFloat(extraDetails?.potassium ),data?.main?.temp,data?.main?.humidity,0.77,rainfall]])
             let predictions = await model.predict(tensorr).data()
+            setLoader(90)
             console.log(typeof extraDetails.potassium)
             let tensorres = predictions
             console.log(tensorres)
@@ -44,6 +60,7 @@ navigate('/dashboard')
               return {
                 probability: p,
                 // we are selecting the value from the obj
+                description:cropdetails[i],
                 className: CROP[i]
               };
             }).sort(function (a, b) {
@@ -51,14 +68,19 @@ navigate('/dashboard')
             })
             console.log(top);
             setCropData(top)
-          })
-          .catch((error) => { console.log(error.message); console.log(cropData) });
-      });
+            setLoader(100)
+          }
+          
+          
+      
+          )
+      
     } else {
       alert("Geolocation is not supported by this browser.");
     }
 
-
+    
+    
   }
   useEffect(() => {
 
@@ -99,17 +121,18 @@ navigate('/dashboard')
             <input type="number" id="ph" min={0} max={14} name="ph" value={extraDetails.ph} class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handlechange} />
           </div>
 
+          <ProgressBar progressPercentage={loader}/>
 
           <div className='my-5'>
             <button className='rounded px-2 py-2 font-semibold bg-green-500' onClick={() => {  reccomdcrop(); }}>Submit</button>
           </div>
         </div>}
-        <div className='my-5 font-bold'>TOP 5</div>
+        <div className='my-5 font-bold'>Top Recommendation</div>
         <ol class="relative border-l border-gray-200 dark:border-gray-700">
           {
             cropData?.slice(0, 5)?.map((e, i) => {
               return (
-                <div key={i}>
+                <div key={i} className={`${(e?.probability * 100).toFixed(2)==='0.00'?"hidden":"block"}`}>
                   <li class="mb-10 ml-6">
                     <span class="absolute flex items-center justify-center w-3 h-3 bg-blue-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
                       <svg height="15px" width="15px" version="1.1" id="_x35_" xmlns="http://www.w3.org/2000/svg"
@@ -153,7 +176,7 @@ navigate('/dashboard')
                     </div>
                     <h3 class="flex items-center justify-between my-2 text-xl font-semibold text-gray-900 dark:text-black">{e?.className}<span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 ml-3" onClick={()=>{handlecropchange(e)}}>Change</span></h3>
                     <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{`${(e?.probability * 100).toFixed(2)} %`}</time>
-                    <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order E-commerce & Marketing pages.</p>
+                    <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">{e?.description}</p>
 
                   </li>
                 </div>
@@ -165,7 +188,7 @@ navigate('/dashboard')
         </ol>
       </div>
       <section>
-        <div className='cursor-pointer my-5 text-center'>
+        <div className={`cursor-pointer my-5 text-center ${(cropData[5]?.probability * 100).toFixed(2)==='0.00'?"hidden":"block"}`}>
           <button onClick={() => setLoadmore(!loadmore)} className='bg-gray-200 px-2 py-2 font-semibold rounded-md'>
             <div>
               {loadmore === false ? "expand" : "collapse"}
@@ -180,7 +203,7 @@ navigate('/dashboard')
               {cropData?.slice(5, 10)?.map((e, i) => {
 
                 return (
-                  <div key={i}>
+                  <div key={i} className={`${(e?.probability * 100).toFixed(2)==='0.00'?"hidden":"block"}`}>
                     <li class="mb-10 ml-6">
                       <span class="absolute flex items-center justify-center w-3 h-3 bg-blue-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
                         <svg height="15px" width="15px" version="1.1" id="_x35_" xmlns="http://www.w3.org/2000/svg"
@@ -224,7 +247,7 @@ navigate('/dashboard')
                       </div>
                       <h3 class="flex justify-between items-center my-2 text-xl font-semibold text-gray-900 dark:text-black">{e?.className}<span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 ml-3" onClick={()=>{handlecropchange(e)}} >Change</span></h3>
                       <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{`${(e?.probability * 100).toFixed(2)} %`}</time>
-                      <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order E-commerce & Marketing pages.</p>
+                      <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">{e?.description}</p>
 
                     </li>
                   </div>

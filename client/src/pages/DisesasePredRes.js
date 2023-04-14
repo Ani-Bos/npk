@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import test from '../static/Apple.jpeg'
+// import test from '../static/Apple.jpeg'
 import disease from '../static/disease'
 import {useNavigate} from 'react-router-dom'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
@@ -28,7 +28,7 @@ function DisesasePredRes({diseasedata}) {
         </span> */}
         <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
         <div className='w-[50%] m-auto'> 
-          <img src={test} alt="temp" className='w-full' />
+          <img src='kjdbc' alt="temp" className='w-full' />
         </div>
         <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-black">{e?.className}</h3>
         <div class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{`${(e?.probability*100).toFixed(2)} %`}</div>
