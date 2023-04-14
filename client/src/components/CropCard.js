@@ -6,7 +6,7 @@ import {useNavigate} from 'react-router-dom'
 function CropCard({recommended}) {
   let navigate=useNavigate();
   const host="http://localhost:5000"
- let img=recommended[0]?.className?.split(' ')[0]
+ let img=recommended?.className?.split(' ')[0]
   return (
     <div className=" my-7 px-5 md:px-0">
       <div className="font-bold text-xl pb-4">Recommended Crop</div>
@@ -22,9 +22,9 @@ function CropCard({recommended}) {
         <div class="flex w-[100%] items-center gap-4 justify-between  px-3 leading-normal">
           <div class="mb-2 ">
             <div className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-700 text-center">
-              {recommended[0]?.className}
+              {recommended?.className}
             </div>
-            <div className="text-gray-500 font-semibold">{(recommended[0]?.probability*100).toFixed(2)}</div>
+            <div className="text-gray-500 font-semibold">{(recommended?.probability*100).toFixed(2)}</div>
           </div>
 
           <div class="mb-3 font-normal text-green-300 dark:text-gray-400">

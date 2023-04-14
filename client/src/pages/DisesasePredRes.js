@@ -1,11 +1,19 @@
 import React,{useState} from 'react'
 import test from '../static/Apple.jpeg'
+import disease from '../static/disease'
+import {useNavigate} from 'react-router-dom'
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 function DisesasePredRes({diseasedata}) {
+  let navigate=useNavigate()
+
   const [loadmore, setLoadmore] = useState(false)
   
   return (
     <div className='container m-auto px-7 bg-gray-50'>
         <div className='text-center font-bold text-lg my-5'>Prediction Result</div>
+        <div>
+        <button className='font-semibold' onClick={()=>{navigate('/disease_predictor')}}><ArrowBackIosNewIcon/> Back </button>
+      </div>
        <div className='text-lg font-bold my-5'>
         Top 5
        </div>
@@ -24,7 +32,7 @@ function DisesasePredRes({diseasedata}) {
         </div>
         <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-black">{e?.className}</h3>
         <div class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{`${(e?.probability*100).toFixed(2)} %`}</div>
-        <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order E-commerce & Marketing pages.</p>
+        <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">{disease[e?.className]}</p>
        
     </li>
     )
@@ -58,7 +66,7 @@ function DisesasePredRes({diseasedata}) {
       </div>
       <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-black">{e?.className}</h3>
       <div class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{`${(e?.probability*100).toFixed(2)} %`}</div>
-      <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order E-commerce & Marketing pages.</p>
+      <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">{disease[e?.className]}</p>
      
   </li>
   )

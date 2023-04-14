@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import noteContext from "./TasksContext";
 
 const NoteState=(props)=>{
-    
+ 
    
     
     return (
