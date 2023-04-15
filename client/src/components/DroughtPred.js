@@ -11,7 +11,8 @@ function DroughtPred() {
         <div class="white-text text-center">
           <div class="card flex items-center">
               
-              <p className='font-semibold flex w-[100%] h-[20vh] justify-center items-center text-white'>Drought Predictor</p>
+                    <p className='font-semibold flex w-[100%] h-[20vh] justify-center items-center text-white'>Drought Predictor Implementing soon
+                    </p>
                
          </div>
         </div>

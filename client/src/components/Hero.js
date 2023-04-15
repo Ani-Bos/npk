@@ -10,10 +10,9 @@ const Hero = () => {
           <div className="container mx-auto xl:px-32">
             <div className="lg:flex justify-between items-center  sm:flex-row">
               <div className="my-10">
-                <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold tracking-tight text-gray-600 mb-16">
-                  Lorem ipsum
-                  <br />
-                  <span>Xentera</span>
+                <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold tracking-tight text-gray-800 mb-16">
+                  Smart Farming
+                 Solution
                   {/* <span className="text-primary">among</span> */}
                   <span className="text-primary">
                     <Typewriter
@@ -21,13 +20,13 @@ const Hero = () => {
                         autoStart: true,
                         loop: true,
                         delay: 100,
-                        strings: ["Lorem", "Ipsum", "Set"],
+                        strings: ["Believe", "Act", "Results"],
                       }}
                     />
                   </span>
                 </h1>
-                <p class="max-w-2xl mb-6 font-light text-gray-600 lg:mb-8 md:text-lg lg:text-lg dark:text-gray-600">
-                  sab lite version bana denge
+                <p class="max-w-2xl mb-6 font-normal text-gray-600 lg:mb-8 md:text-lg lg:text-lg dark:text-gray-600">
+                  Transforming Agriculture Through Technology
                 </p>
                 {/* <a
                   href="/login"
