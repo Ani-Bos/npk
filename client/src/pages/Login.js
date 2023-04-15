@@ -146,7 +146,7 @@ const handlesignin=async()=>{
                   Send Otp
                 </Button>
                 &nbsp;
-                <Button className="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-red-500 rounded-md shadow hover:bg-red-600 focus:outline-none focus:ring-red-200 focus:ring-4 ">
+                <Button onClick={()=>{navigate('/')}} className="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-red-500 rounded-md shadow hover:bg-red-600 focus:outline-none focus:ring-red-200 focus:ring-4 ">
                   Cancel
                 </Button>
               </div>

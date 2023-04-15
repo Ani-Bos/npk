@@ -1,7 +1,7 @@
 import React from "react";
 import Typewriter from "typewriter-effect";
 import Login from "../pages/Login";
-
+import {Link} from 'react-router-dom'
 const Hero = () => {
   return (
     <div>
@@ -35,12 +35,12 @@ const Hero = () => {
                 >
                   Get started
                 </a> */}
-                <a
-                  href="/login"
+                <Link
+                  to="/login"
                   class="inline-block rounded-3xl px-6 outline-1 py-1.5 text-base font-medium leading-7 text-gray-800 shadow-sm ring-1 ring-gray-600 hover:bg-transparent hover:outline rounded-full"
                 >
                   Get Started
-                </a>
+                </Link>
               </div>
               <div className="grid place-items-center ">
                 <img

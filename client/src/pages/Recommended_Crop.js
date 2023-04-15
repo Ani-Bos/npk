@@ -285,7 +285,7 @@ function Recommended_Crop({
                       </g>
                     </svg>
                   </span>
-                  <div className="w-[50%] m-auto">
+                  <div className="w-[500px] m-auto">
                     <img
                       src={`${host}/static/${e?.className?.split(" ")[0]}.jpg`}
                       alt="temp"
@@ -409,7 +409,7 @@ function Recommended_Crop({
                           </g>
                         </svg>
                       </span>
-                      <div className="w-[50%] m-auto">
+                      <div className="w-[500px] m-auto">
                         <img
                           src={`${host}/static/${
                             e?.className?.split(" ")[0]
