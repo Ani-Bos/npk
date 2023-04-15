@@ -77,12 +77,12 @@ const [change, setChange] = useState(false)
           <Route
             exact
             path="/disease_predictor"
-            element={<DiseasePredictor setUpdatedisease={setUpdatedisease} />}
+            element={<DiseasePredictor host={host} setUpdatedisease={setUpdatedisease} />}
           />
           <Route
             exact
             path="/disease_predictor_result"
-            element={<DisesasePredRes diseasedata={updatedisease} />}
+            element={<DisesasePredRes host={host} diseasedata={updatedisease} />}
           />
           <Route
             exact
@@ -91,6 +91,7 @@ const [change, setChange] = useState(false)
               <Recommended_Crop
                 setExtraDetails={setExtraDetails}
                 setChange={setChange}
+                host={host}
                 extraDetails={extraDetails}
                 cropdata={cropdata}
                 setCropdata={setCropdata}
