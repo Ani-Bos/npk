@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import CROP from "../static/crop";
+import CROPDETAILS from '../static/cropdetails'
 import * as tf from "@tensorflow/tfjs";
 import { useNavigate } from "react-router-dom";
 import RAINFALL from '../static/rainfall'
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ProgressBar from "../components/Loader";
+import LabelBottomNavigation from "../components/BelowNavigation";
 function Recommended_Crop({
   setExtraDetails,
   extraDetails,
@@ -67,6 +69,7 @@ function Recommended_Crop({
                 return {
                   probability: p,
                   // we are selecting the value from the obj
+                  description:CROPDETAILS[i],
                   className: CROP[i],
                 };
               })
@@ -285,7 +288,7 @@ function Recommended_Crop({
                       </g>
                     </svg>
                   </span>
-                  <div className="w-[500px] m-auto">
+                  <div className="w-[60%] md:w-[40%] m-auto">
                     <img
                       src={`${host}/static/${e?.className?.split(" ")[0]}.jpg`}
                       alt="temp"
@@ -307,9 +310,7 @@ function Recommended_Crop({
                     e?.probability * 100
                   ).toFixed(2)} %`}</time>
                   <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
-                    Get access to over 20+ pages including a dashboard layout,
-                    charts, kanban board, calendar, and pre-order E-commerce &
-                    Marketing pages.
+                    {e?.description}
                   </p>
                 </li>
               </div>
@@ -409,7 +410,7 @@ function Recommended_Crop({
                           </g>
                         </svg>
                       </span>
-                      <div className="w-[500px] m-auto">
+                      <div className="w-[60%] md:w-[40%] m-auto">
                         <img
                           src={`${host}/static/${
                             e?.className?.split(" ")[0]
@@ -433,9 +434,7 @@ function Recommended_Crop({
                         e?.probability * 100
                       ).toFixed(2)} %`}</time>
                       <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
-                        Get access to over 20+ pages including a dashboard
-                        layout, charts, kanban board, calendar, and pre-order
-                        E-commerce & Marketing pages.
+                      {e?.description}
                       </p>
                     </li>
                   </div>
@@ -445,6 +444,7 @@ function Recommended_Crop({
           </div>
         )}
       </section>
+      <LabelBottomNavigation/>
     </div>
   );
 }

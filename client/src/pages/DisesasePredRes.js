@@ -3,6 +3,7 @@ import React,{useState} from 'react'
 import disease from '../static/disease'
 import {useNavigate} from 'react-router-dom'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import LabelBottomNavigation from '../components/BelowNavigation';
 function DisesasePredRes({diseasedata,host}) {
   let navigate=useNavigate()
 
@@ -27,7 +28,7 @@ function DisesasePredRes({diseasedata,host}) {
             <svg aria-hidden="true" class="w-3 h-3 text-blue-800 dark:text-blue-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
         </span> */}
         <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
-        <div className='w-[500px] m-auto'> 
+        <div className='w-[60%] md:w-[40%] m-auto'> 
           <img src={`${host}/disease_static/${e?.className?.split(" ")[0]}.jpg`} alt="temp" className='w-full' />
         </div>
         <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-black">{e?.className}</h3>
@@ -61,7 +62,7 @@ function DisesasePredRes({diseasedata,host}) {
           <svg aria-hidden="true" class="w-3 h-3 text-blue-800 dark:text-blue-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
       </span> */}
       <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
-      <div className='w-[500px] m-auto'> 
+      <div className='w-[60%] md:w-[40%] m-auto'> 
         <img  src={`${host}/disease_static/${e?.className?.split(" ")[0]}.jpg`} alt="temp" className='w-full' />
       </div>
       <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-black">{e?.className}</h3>
@@ -77,6 +78,7 @@ function DisesasePredRes({diseasedata,host}) {
       
       }
 </section>
+<LabelBottomNavigation/>
     </div>
   )
 }

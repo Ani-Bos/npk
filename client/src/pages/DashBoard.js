@@ -94,14 +94,14 @@ setCropdata(top[0])
       }, [])
       
   return (
-    <div className='container m-auto  mb-[5rem] '>
+    <div className='container m-auto  mb-[5rem] bg-gray-50'>
       {/* <Weather/> */}
-      <div className='font-semibold text-xl px-5'>
-        Welcome, {name}
+      <div className='font-semibold text-xl pt-6 px-5'>
+        Welcome, <span className='font-bold text-green-900'>{name}</span> 
       </div>
       {/* <Map/> */}
       <CropCard recommended={cropdata}/>
-      <div className='grid grid-cols-2 gap-2  px-5'>
+      <div className='grid grid-cols-2 gap-2  px-5 bg-gray-50'>
         <div onClick={()=>navigate('/disease_predictor')}>
         <DiseasePred/>
         </div>

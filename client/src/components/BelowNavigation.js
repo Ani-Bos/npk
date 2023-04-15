@@ -4,10 +4,10 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 
 import Home from '@mui/icons-material/Home';
 import Profile from '@mui/icons-material/AccountCircle';
-
+import { useNavigate } from 'react-router-dom';
 export default function LabelBottomNavigation() {
-  const [value, setValue] = React.useState('Home');
-
+  const [value, setValue] = React.useState('Dashboard');
+let navigate=useNavigate();
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -15,9 +15,10 @@ export default function LabelBottomNavigation() {
   return (
     <BottomNavigation sx={{width:'100vw',position:'fixed',left:0,bottom:0 ,backgroundColor:"rgb(198 207 221)"}} value={value} onChange={handleChange}>
       <BottomNavigationAction
-        label="Home"
-        value="Home"
+        label="Dashboard"
+        value="Dashboard"
         selected
+        onClick={()=>{navigate('/dashboard')}}
         icon={<Home />}
       />
       {/* <BottomNavigationAction

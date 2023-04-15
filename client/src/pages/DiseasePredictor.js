@@ -7,7 +7,9 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie'
 import {useUserAuth} from "../context/tasks/UserAuthContext";
-function DiseasePredictor({ setUpdatedisease }) {
+import LabelBottomNavigation from "../components/BelowNavigation";
+import axios from "axios";
+function DiseasePredictor({ setUpdatedisease,host }) {
   const {user}=useUserAuth()
   useEffect(() => {
     if( !Cookies.get('auth-Tokennpk') || !user)
@@ -19,8 +21,24 @@ function DiseasePredictor({ setUpdatedisease }) {
   const [img, setImg] = useState(
     "https://t3.ftcdn.net/jpg/03/45/05/92/360_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg"
   );
+  const handleadddisease=async(top)=>{
+    let a=document.getElementById('file').files[0];
+    let formData=new FormData();
+    formData.append('file',a);
+    formData.append('category',top.className)
+    formData.append('probability',top.probability)
+    const add=await axios.post(`${host}/api/file/upload`,formData,{
+      headers:{
+        "Content-Type": "multipart/form-data",
+        "auth-token":Cookies.get('auth-Tokennpk')
+      }
+    });
+    const res=add.data;
+    console.log(res);
+    navigate("/disease_predictor_result");
+  }
   const handlechange = () => {
-    const file = document.getElementById("file_input").files[0];
+    const file = document.getElementById("file").files[0];
     const image = window.URL.createObjectURL(file);
     setImg(image);
     let reader = new FileReader();
@@ -29,15 +47,17 @@ function DiseasePredictor({ setUpdatedisease }) {
       $(`#temp`).attr("src", dataURL);
       // $("#prediction-list").empty();
     };
-    let filer = $("#file_input").prop("files")[0];
+    let filer = $("#file").prop("files")[0];
+    console.log(filer)
     reader.readAsDataURL(filer);
   };
   const handlepredict = async () => {
     setLoad(10);
-    const model = await tf.loadGraphModel("model.json");
+    const model = await tf.loadGraphModel("disease_model/model.json");
     setLoad(40);
     console.log(model);
     let img = $("#temp").get(0);
+    console.log(img)
     let tensorr1 = tf.browser
       .fromPixels(img)
       .resizeNearestNeighbor([224, 224])
@@ -46,12 +66,12 @@ function DiseasePredictor({ setUpdatedisease }) {
     const normalized = tf.scalar(1.0).sub(tensorr1.div(offset));
 
     const tensorr = normalized.expandDims(0);
-    console.log(tensorr);
+    // let tensorr=tf.browser.fromPixels(img).resizeNearestNeighbor([224,224]).toFloat().div(tf.scalar(255.0)).expandDims()
+    // console.log(tensorr);
     let predictions = await model.predict(tensorr).softmax().data();
     setLoad(70);
-    let tensorres = predictions;
-    console.log(tensorres);
-    let top = Array.from(tensorres)
+    
+    let top = Array.from(predictions)
       .map(function (p, i) {
         // this is Array.map
         return {
@@ -66,7 +86,8 @@ function DiseasePredictor({ setUpdatedisease }) {
     console.log(top);
     setUpdatedisease(top);
     setLoad(100);
-    navigate("/disease_predictor_result");
+    handleadddisease(top[0]);
+  
     // top5.forEach(function (resp) {
     //   //  $("#prediction-list").append(`<li>${p.className}: ${p.probability.toFixed(6)}</li>`);
 
@@ -75,7 +96,7 @@ function DiseasePredictor({ setUpdatedisease }) {
   };
   return (
     <div className="xs:container m-auto px-5 bg-gray-100 h-[100vh]">
-      <img className="hidden" alt="yoyo" id="temp" />
+      <img className="hidden"  alt="yoyo" id="temp" />
       <div>
         {/* <button
           className="font-semibold"
@@ -98,7 +119,7 @@ function DiseasePredictor({ setUpdatedisease }) {
                 <div className="flex flex-col gap-4">
                   <input
                     class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                    id="file_input"
+                    id="file"
                     type="file"
                     onChange={handlechange}
                   />
@@ -116,7 +137,7 @@ function DiseasePredictor({ setUpdatedisease }) {
         <div className="my-6">
           <ProgressBar progressPercentage={load} />
         </div>
-
+        <LabelBottomNavigation/>
     </div>
   );
 }

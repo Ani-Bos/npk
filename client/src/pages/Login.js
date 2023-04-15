@@ -28,11 +28,11 @@ const handlesignin=async()=>{
   {
     const login=await axios.post(`${url}/login`,{phone:user.phoneNumber});
     const data=login.data;
-    Cookies.set('auth-Tokennpk',data.authToken)
+    Cookies.set('auth-Tokennpk',data.authToken,{ expires: 365 })
     navigate('/dashboard');
    return;
   }
-  Cookies.set('auth-Tokennpk',res.authToken)
+  Cookies.set('auth-Tokennpk',res.authToken,{ expires: 365 })
   
   navigate('/dashboard');
 }
