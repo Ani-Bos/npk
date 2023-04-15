@@ -209,6 +209,7 @@ const Activity = () => {
       </div>
     </a>
   </div>
+  
   {/* <!--   🛑 Product card 6 - Ends Here  --> */}
 
 </section>

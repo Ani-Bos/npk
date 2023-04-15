@@ -20,6 +20,7 @@ import DisesasePredRes from './pages/DisesasePredRes';
 import Recommended_Crop from './pages/Recommended_Crop';
 import Developer from './pages/Developer';
 import Activity from './components/Activity';
+import Profile from './components/Profile';
 function App() {
   const [extraDetails, setExtraDetails] = useState({nitrogen:50.55,phosphrous:53.36,potassium:48.14,ph:0.77})
   useEffect(() => {
@@ -59,6 +60,8 @@ const [change, setChange] = useState(false)
           <Route exact path="/blog" element={<Blog />} />
           <Route exact path="/dev" element={<Developer />} />
           <Route exact path="/activity" element={<Activity />} />
+          <Route exact path="/profile" element={<Profile />} />
+
           <Route
             exact
             path="/dashboard"
