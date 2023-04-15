@@ -19,6 +19,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import DisesasePredRes from './pages/DisesasePredRes';
 import Recommended_Crop from './pages/Recommended_Crop';
 import Developer from './pages/Developer';
+import Activity from './components/Activity';
 function App() {
   const [extraDetails, setExtraDetails] = useState({nitrogen:50.55,phosphrous:53.36,potassium:48.14,ph:0.77})
   useEffect(() => {
@@ -56,6 +57,7 @@ const host="http://localhost:5000";
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/blog" element={<Blog />} />
           <Route exact path="/dev" element={<Developer />} />
+          <Route exact path="/activity" element={<Activity />} />
           <Route
             exact
             path="/dashboard"
