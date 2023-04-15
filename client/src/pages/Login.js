@@ -14,10 +14,28 @@ const Login = () => {
   const [number, setNumber] = useState("");
   const [flag, setFlag] = useState(false);
   const [otp, setOtp] = useState("");
+  const [name, setName] = useState("")
   const [result, setResult] = useState("");
-  const { setUpRecaptha } = useUserAuth();
+  const { setUpRecaptha,user } = useUserAuth();
   const navigate = useNavigate();
+const handlesignin=async()=>{
 
+  const url="http://localhost:5000/api/auth"
+  const us=await axios.post(`${url}/createUser`,{phone:user.phoneNumber,name:name});
+  const res=us.data;
+  console.log(res)
+  if(res.mark)
+  {
+    const login=await axios.post(`${url}/login`,{phone:user.phoneNumber});
+    const data=login.data;
+    Cookies.set('auth-Tokennpk',data.authToken)
+    navigate('/dashboard');
+   return;
+  }
+  Cookies.set('auth-Tokennpk',res.authToken)
+  
+  navigate('/dashboard');
+}
   const getOtp = async (e) => {
     e.preventDefault();
     console.log(number);
@@ -39,7 +57,8 @@ const Login = () => {
     if (otp === "" || otp === null) return;
     try {
       await result.confirm(otp);
-      navigate("/dashboard");
+      handlesignin();
+      // navigate("/dashboard");
     } catch (err) {
       setError(err.message);
     }
@@ -70,6 +89,8 @@ const Login = () => {
                   <input
                     type="name"
                     id="name"
+                    value={name}
+                    onChange={(e)=>{setName(e.target.value)}}
                     autofocus
                     className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-green-200"
                   />

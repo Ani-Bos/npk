@@ -25,10 +25,11 @@ function App() {
    
     // eslint-disable-next-line
 }, [])
+const host="http://localhost:5000"
 const [updatedisease, setUpdatedisease] = useState([]);
 const [cropdata, setCropdata] = useState({})
 const [change, setChange] = useState(false)
-const host="http://localhost:5000";
+
   return (
     // <TaskState>
     //   <Router>
@@ -63,6 +64,7 @@ const host="http://localhost:5000";
               <DashBoard
                 cropdata={cropdata}
                 change={change}
+                host={host}
                 setCropdata={setCropdata}
               />
             }

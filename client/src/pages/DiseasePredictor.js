@@ -1,11 +1,19 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import $ from "jquery";
 import * as tf from "@tensorflow/tfjs";
 import CLASSES from "../static/classes";
 import ProgressBar from "../components/Loader";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie'
+import {useUserAuth} from "../context/tasks/UserAuthContext";
 function DiseasePredictor({ setUpdatedisease }) {
+  const {user}=useUserAuth()
+  useEffect(() => {
+    if( !Cookies.get('auth-Tokennpk') || !user)
+    return navigate('/login')
+  }, [])
+  
   const [load, setLoad] = useState(0);
   let navigate = useNavigate();
   const [img, setImg] = useState(

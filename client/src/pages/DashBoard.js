@@ -11,12 +11,30 @@ import * as tf from '@tensorflow/tfjs';
 import Map from '../components/Map'
 import queryString from 'query-string';
 import {useLocation} from 'react-router-dom'
+import Cookies from 'js-cookie'
 import RAINFALL from '../static/rainfall' 
-function DashBoard({cropdata,setCropdata,change}) {
+import {useUserAuth} from "../context/tasks/UserAuthContext";
+import axios from 'axios'
+function DashBoard({cropdata,setCropdata,change,host}) {
+const [name, setName] = useState("")
+const [phone, setPhone] = useState("")
+const {user}=useUserAuth()
   // let location=useLocation()
   // const {change} = queryString.parse(location.search); 
-  
   let navigate=useNavigate();
+const getuserinfo=async()=>{
+
+  const user=await axios.post(`${host}/api/auth/getuser`,{},{
+    headers:{
+      "auth-token":Cookies.get('auth-Tokennpk')
+    }
+  })
+  const data=user.data;
+  setName(data.user.name)
+  setPhone(data.user.phone)
+}
+  
+  
  
       const reccomdcrop=async()=>{
         const model = await tf.loadGraphModel('cropmodel/model.json');
@@ -68,17 +86,18 @@ setCropdata(top[0])
 
       }
       useEffect(() => {
-       
+        if(!Cookies.get('auth-Tokennpk')|| !user)
+       return navigate('/login')
         if(!change)
         reccomdcrop()
-
+          getuserinfo()
       }, [])
       
   return (
     <div className='container m-auto  mb-[5rem] '>
       {/* <Weather/> */}
       <div className='font-semibold text-xl px-5'>
-        Welcome, Sachin
+        Welcome, {name}
       </div>
       {/* <Map/> */}
       <CropCard recommended={cropdata}/>
