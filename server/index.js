@@ -14,18 +14,21 @@ const Disease = require('./model/Diseasepred');
 const cors=require('cors')
 
 const axios=require('axios')
-const connectToMongo=require('./db')
+const {connectToMongo}=require('./db')
+const dotenv=require('dotenv')
 const PORT=process.env.PORT ||5000;
-
+dotenv.config()
 
 const app=express();
 
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000'
+}));
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 
-
-const mongoURI="mongodb://localhost:27017/npk?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
+const mongoURI=`mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@cluster0.qkqwkdq.mongodb.net/npk?retryWrites=true&w=majority`
+// const mongoURI="mongodb://localhost:27017/npk?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
 const conn = mongoose.createConnection(mongoURI);
 connectToMongo();
 
