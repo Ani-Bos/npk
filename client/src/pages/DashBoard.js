@@ -8,7 +8,7 @@ import {useNavigate} from 'react-router-dom'
 import $ from 'jquery'
 import CROP from '../static/crop'
 import * as tf from '@tensorflow/tfjs';
-import Map from '../components/Map'
+
 import queryString from 'query-string';
 import {useLocation} from 'react-router-dom'
 import Cookies from 'js-cookie'
@@ -102,7 +102,7 @@ setCropdata(top[0])
         Welcome, <span className='font-bold text-green-900'>{name}</span> 
       </div>
       <Weather/>
-      {/* <Map/> */}
+    
       <CropCard recommended={cropdata}/>
       <div className='grid grid-cols-2 gap-2  px-5 bg-gray-50'>
         <div onClick={()=>navigate('/disease_predictor')}>
