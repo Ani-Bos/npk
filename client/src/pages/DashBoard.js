@@ -15,6 +15,8 @@ import Cookies from 'js-cookie'
 import RAINFALL from '../static/rainfall' 
 import {useUserAuth} from "../context/tasks/UserAuthContext";
 import axios from 'axios'
+import Activity from '../components/Activity'
+import Profile from '../components/Profile'
 function DashBoard({cropdata,setCropdata,change,host}) {
 const [name, setName] = useState("")
 const [phone, setPhone] = useState("")
@@ -22,6 +24,7 @@ const {user}=useUserAuth()
   // let location=useLocation()
   // const {change} = queryString.parse(location.search); 
   let navigate=useNavigate();
+  const [profile, setProfile] = useState(false)
 const getuserinfo=async()=>{
 
   const user=await axios.post(`${host}/api/auth/getuser`,{},{
@@ -111,7 +114,7 @@ setCropdata(top[0])
         </div>
       
       </div>
-      <LabelBottomNavigation/>
+      {/* <LabelBottomNavigation setProfile={setProfile} profile={profile}/> */}
     </div>
   )
 }

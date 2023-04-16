@@ -53,7 +53,7 @@ function DiseasePredictor({ setUpdatedisease,host }) {
   };
   const handlepredict = async () => {
     setLoad(10);
-    const model = await tf.loadGraphModel("disease_model/model.json");
+    const model = await tf.loadGraphModel("https://storage.googleapis.com/drought-prediction-bucket/model1.json");
     setLoad(40);
     console.log(model);
     let img = $("#temp").get(0);
@@ -137,7 +137,7 @@ function DiseasePredictor({ setUpdatedisease,host }) {
         <div className="my-6">
           <ProgressBar progressPercentage={load} />
         </div>
-        <LabelBottomNavigation/>
+        {/* <LabelBottomNavigation/> */}
     </div>
   );
 }

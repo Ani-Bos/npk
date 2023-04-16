@@ -21,12 +21,12 @@ const Login = () => {
 const handlesignin=async()=>{
 
   const url="http://localhost:5000/api/auth"
-  const us=await axios.post(`${url}/createUser`,{phone:user.phoneNumber,name:name});
+  const us=await axios.post(`${url}/createUser`,{phone:user?.phoneNumber,name:name});
   const res=us.data;
   console.log(res)
   if(res.mark)
   {
-    const login=await axios.post(`${url}/login`,{phone:user.phoneNumber});
+    const login=await axios.post(`${url}/login`,{phone:user?.phoneNumber});
     const data=login.data;
     Cookies.set('auth-Tokennpk',data.authToken,{ expires: 365 })
     navigate('/dashboard');
@@ -180,7 +180,7 @@ const handlesignin=async()=>{
                   Verify OTP
                 </Button>
                 &nbsp;
-                <Button className="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-red-500 rounded-md shadow hover:bg-red-600 focus:outline-none focus:ring-red-200 focus:ring-4 ">
+                <Button onClick={()=>{navigate('/')}} className="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-red-500 rounded-md shadow hover:bg-red-600 focus:outline-none focus:ring-red-200 focus:ring-4 ">
                   Cancel
                 </Button>
               </div>

@@ -21,12 +21,15 @@ import Recommended_Crop from './pages/Recommended_Crop';
 import Developer from './pages/Developer';
 import Activity from './components/Activity';
 import Profile from './components/Profile';
+import LabelBottomNavigation from './components/BelowNavigation';
 function App() {
   const [extraDetails, setExtraDetails] = useState({nitrogen:50.55,phosphrous:53.36,potassium:48.14,ph:0.77})
   useEffect(() => {
    
     // eslint-disable-next-line
 }, [])
+
+
 const host="http://localhost:5000"
 const [updatedisease, setUpdatedisease] = useState([]);
 const [cropdata, setCropdata] = useState({})
@@ -59,8 +62,8 @@ const [change, setChange] = useState(false)
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/blog" element={<Blog />} />
           <Route exact path="/dev" element={<Developer />} />
-          <Route exact path="/activity" element={<Activity />} />
-          <Route exact path="/profile" element={<Profile />} />
+          <Route exact path="/activity" element={<Activity host={host}/>} />
+          <Route exact path="/profile" element={<Profile host={host} />} />
 
           <Route
             exact
@@ -99,6 +102,7 @@ const [change, setChange] = useState(false)
             }
           />
         </Routes>
+        <LabelBottomNavigation/>
       </Router>
     </UserAuthContextProvider>
   );

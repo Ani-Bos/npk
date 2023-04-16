@@ -38,3 +38,10 @@
   width: 40px ;
   height: 38px ;
 }
+.leaflet-container {
+  position:absolute;
+  top:0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}

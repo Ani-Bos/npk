@@ -1,9 +1,7 @@
-import { GoogleMap,useLoadScript,Marker } from "@react-google-maps/api";
+import { MapContainer, TileLayer,Popup,Marker } from 'react-leaflet'
 import {useEffect,useState} from 'react'
 function Map(){
-const {isloaded}=useLoadScript({
-    googleMapsApiKey:"sbv"
-})
+
 const [center, setCenter] = useState({lat:0, lon:0})
 useEffect(() => {
  
@@ -15,11 +13,18 @@ useEffect(() => {
 
 }, [])
 console.log(center)
-if(!isloaded)return <div>Loading...</div>
 return(
-    <GoogleMap zoom={10} mapContainerClassName="w-[100vw] h-[20vh]" center={center}>
-<Marker position={center}/>
-    </GoogleMap>
+    <MapContainer zoom={10}  center={[center?.lat,center?.lon]}>
+<TileLayer className='leaflet-container'
+    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+   />
+ <Marker position={[center?.lat,center?.lon]}>
+      <Popup>
+        I am a pop-up!
+      </Popup>
+  </Marker>
+    </MapContainer>
 )
 }
 export default Map
