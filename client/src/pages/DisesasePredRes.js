@@ -29,7 +29,7 @@ function DisesasePredRes({diseasedata,host}) {
         </span> */}
         <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
         <div className='w-[60%] md:w-[40%] m-auto'> 
-          <img src={`${host}/disease_static/${e?.className?.split(" ")[0]}.jpg`} alt="temp" className='w-full' />
+          <img src={`${host}/static/${e?.className?.split(" ")[0]}.jpg`} alt="temp" className='w-full' />
         </div>
         <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-black">{e?.className}</h3>
         <div class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{`${(e?.probability*100).toFixed(2)} %`}</div>
@@ -63,7 +63,7 @@ function DisesasePredRes({diseasedata,host}) {
       </span> */}
       <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
       <div className='w-[60%] md:w-[40%] m-auto'> 
-        <img  src={`${host}/disease_static/${e?.className?.split(" ")[0]}.jpg`} alt="temp" className='w-full' />
+        <img  src={`${host}/static/${e?.className?.split(" ")[0]}.jpg`} alt="temp" className='w-full' />
       </div>
       <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-black">{e?.className}</h3>
       <div class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{`${(e?.probability*100).toFixed(2)} %`}</div>

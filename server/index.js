@@ -27,7 +27,7 @@ app.use(cors({
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 
-const mongoURI=`mongodb+srv://[user]:[pass]@cluster0.qkqwkdq.mongodb.net/npk?retryWrites=true&w=majority`
+const mongoURI=`mongodb+srv://[user]:[pas]@cluster0.qkqwkdq.mongodb.net/npk?retryWrites=true&w=majority`
 // const mongoURI="mongodb://localhost:27017/npk?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
 const conn = mongoose.createConnection(mongoURI);
 connectToMongo();

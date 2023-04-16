@@ -11,7 +11,7 @@ const GridFsStorage = require('multer-gridfs-storage');
 const { mongo } = require('mongoose');
 
 const Disease = require('../model/Diseasepred');
-const mongoURI=`mongodb+srv://[user]:[pass]@cluster0.qkqwkdq.mongodb.net/npk?retryWrites=true&w=majority`
+const mongoURI=`mongodb+srv://[user]:[pas]@cluster0.qkqwkdq.mongodb.net/npk?retryWrites=true&w=majority`
 // const mongoURI="mongodb://localhost:27017/npk?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
 const storage = new GridFsStorage({
     url: mongoURI,

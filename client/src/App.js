@@ -33,23 +33,7 @@ const [cropdata, setCropdata] = useState({})
 const [change, setChange] = useState(false)
 
   return (
-    // <TaskState>
-    //   <Router>
-    //     <Navbar />
-    //     <Routes>
-    //       <Route exact path="/GetOtp" element={<GetOtp />} />
-    //       <Route exact path="/" element={<Home />} />
-    //       <Route exact path="/login" element={<Login />} />
-    //       <Route exact path="/blog" element={<Blog />} />
-    //       <Route exact path="/dashboard" element={<DashBoard />} />
-    //       <Route
-    //         exact
-    //         path="/disease_predictor"
-    //         element={<DiseasePredictor />}
-    //       />
-    //     </Routes>
-    //   </Router>
-    // </TaskState>
+   
     <UserAuthContextProvider>
       <Router>
         <Navbar />
