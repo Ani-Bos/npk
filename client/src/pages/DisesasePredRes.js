@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-// import test from '../static/Apple.jpeg'
+// import test from '../static/apple.jpeg'
 import disease from '../static/disease'
 import {useNavigate} from 'react-router-dom'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
