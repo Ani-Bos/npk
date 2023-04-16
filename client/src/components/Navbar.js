@@ -16,9 +16,9 @@ function Navbar() {
          <div>
          <Link to="/"  className="flex items-center">
             <img
-              src="./images/logo.svg"
-              className="h-8 mr-3"
-              alt="Flowbite Logo"
+              src="./images/NPK_logo.png"
+              className="h-[3rem] mr-3"
+              alt="NPK Logo"
             />
         
           </Link>

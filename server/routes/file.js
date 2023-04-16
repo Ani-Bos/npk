@@ -56,7 +56,7 @@ router.post('/getdata',fillter,async(req,res)=>{
 // let sumweight=parseFloat(req.body.weight);
 
 const arr=req.files
-console.log(arr)
+
         const disease=await Disease.create({
             user:req.user.id,
             category:req.body.category,
@@ -163,7 +163,7 @@ router.get('/view/:id', async (req, res) => {
       } else {
           // detect the content type and set the appropriate response headers.
           let mimeType = file.contentType;
-          console.log(mimeType)
+         
           if (!mimeType) {
               mimeType = mime.lookup(file.filename);
           }

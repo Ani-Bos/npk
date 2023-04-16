@@ -21,12 +21,13 @@ const Login = () => {
 const handlesignin=async()=>{
 
   const url="http://localhost:5000/api/auth"
-  const us=await axios.post(`${url}/createUser`,{phone:user?.phoneNumber,name:name});
+  console.log(user)
+  const us=await axios.post(`${url}/createUser`,{phone:(user?.phoneNumber)?(user?.phoneNumber):Cookies.get('phonenpk'),name:name});
   const res=us.data;
   console.log(res)
   if(res.mark)
   {
-    const login=await axios.post(`${url}/login`,{phone:user?.phoneNumber});
+    const login=await axios.post(`${url}/login`,{phone:(user?.phoneNumber)?(user?.phoneNumber):Cookies.get('phonenpk')});
     const data=login.data;
     Cookies.set('auth-Tokennpk',data.authToken,{ expires: 365 })
     navigate('/dashboard');
@@ -140,6 +141,7 @@ const handlesignin=async()=>{
               </div> */}
               <div className="button-right flex justify-evenly">
                 <Button
+                onClick={()=>{Cookies.set('phonenpk',number,{ expires: 365 })}}
                   type="submit"
                   className="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-green-500 rounded-md shadow hover:bg-green-600 focus:outline-none focus:ring-green-200 focus:ring-4  "
                 >

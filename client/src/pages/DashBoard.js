@@ -98,10 +98,10 @@ setCropdata(top[0])
       
   return (
     <div className='container m-auto  mb-[5rem] bg-gray-50'>
-      {/* <Weather/> */}
-      <div className='font-semibold text-xl pt-6 px-5'>
+      <div className='font-semibold text-xl pt-6 px-5  mb-7'>
         Welcome, <span className='font-bold text-green-900'>{name}</span> 
       </div>
+      <Weather/>
       {/* <Map/> */}
       <CropCard recommended={cropdata}/>
       <div className='grid grid-cols-2 gap-2  px-5 bg-gray-50'>
