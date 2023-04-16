@@ -13,6 +13,7 @@ function Recommended_Crop({
   cropdata,
   setCropdata,
   setChange,
+  host
 }) {
   let navigate = useNavigate();
   const [loadmore, setLoadmore] = useState(false);
@@ -90,7 +91,7 @@ function Recommended_Crop({
   useEffect(() => {
     reccomdcrop();
   }, []);
-  const host = "http://localhost:5000";
+ 
   return (
     <div className="container m-auto px-7">
       <div className="text-center font-bold text-xl">

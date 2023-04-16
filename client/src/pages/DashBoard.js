@@ -103,7 +103,7 @@ setCropdata(top[0])
       </div>
       <Weather/>
     
-      <CropCard recommended={cropdata}/>
+      <CropCard recommended={cropdata} host={host}/>
       <div className='grid grid-cols-2 gap-2  px-5 bg-gray-50'>
         <div onClick={()=>navigate('/disease_predictor')}>
         <DiseasePred/>

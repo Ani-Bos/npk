@@ -9,7 +9,7 @@ import Cookies from "js-cookie";
 import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { useUserAuth } from "../context/tasks/UserAuthContext";
-const Login = () => {
+const Login = ({host}) => {
   const [error, setError] = useState("");
   const [number, setNumber] = useState("");
   const [flag, setFlag] = useState(false);
@@ -20,14 +20,13 @@ const Login = () => {
   const navigate = useNavigate();
 const handlesignin=async()=>{
 
-  const url="http://localhost:5000/api/auth"
   console.log(user)
-  const us=await axios.post(`${url}/createUser`,{phone:(user?.phoneNumber)?(user?.phoneNumber):Cookies.get('phonenpk'),name:name});
+  const us=await axios.post(`${host}/api/auth/createUser`,{phone:(user?.phoneNumber)?(user?.phoneNumber):Cookies.get('phonenpk'),name:name});
   const res=us.data;
   console.log(res)
   if(res.mark)
   {
-    const login=await axios.post(`${url}/login`,{phone:(user?.phoneNumber)?(user?.phoneNumber):Cookies.get('phonenpk')});
+    const login=await axios.post(`${host}/api/auth/login`,{phone:(user?.phoneNumber)?(user?.phoneNumber):Cookies.get('phonenpk')});
     const data=login.data;
     Cookies.set('auth-Tokennpk',data.authToken,{ expires: 365 })
     navigate('/dashboard');

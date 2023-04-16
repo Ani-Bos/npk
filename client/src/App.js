@@ -1,27 +1,24 @@
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
+  BrowserRouter as Router, Route, Routes
 } from 'react-router-dom';
-import TaskState from './context/tasks/TaskState'
+
 import DashBoard from './pages/DashBoard';
-import Landing from './pages/Landing';
-import Login from './pages/Login';
+
+import Home from './components/Home';
+import Navbar from './components/Navbar';
 import Blog from './pages/Blog';
-import Navbar from './components/Navbar'
-import Home from './components/Home'
+import Login from './pages/Login';
 // import Navbar from './components/Navbar'
+import Activity from './components/Activity';
+import LabelBottomNavigation from './components/BelowNavigation';
+import GetOtp from './components/GetOtp';
+import Profile from './components/Profile';
+import { UserAuthContextProvider } from './context/tasks/UserAuthContext';
+import Developer from './pages/Developer';
 import DiseasePredictor from './pages/DiseasePredictor';
-import GetOtp from './components/GetOtp'
-import { UserAuthContextProvider } from './context/tasks/UserAuthContext'
-import ProtectedRoute from './components/ProtectedRoute';
 import DisesasePredRes from './pages/DisesasePredRes';
 import Recommended_Crop from './pages/Recommended_Crop';
-import Developer from './pages/Developer';
-import Activity from './components/Activity';
-import Profile from './components/Profile';
-import LabelBottomNavigation from './components/BelowNavigation';
 function App() {
   const [extraDetails, setExtraDetails] = useState({nitrogen:50.55,phosphrous:53.36,potassium:48.14,ph:0.77})
   useEffect(() => {
@@ -30,7 +27,7 @@ function App() {
 }, [])
 
 
-const host="http://localhost:5000"
+const host="http://34.125.50.13:8080"
 const [updatedisease, setUpdatedisease] = useState([]);
 const [cropdata, setCropdata] = useState({})
 const [change, setChange] = useState(false)
@@ -57,9 +54,9 @@ const [change, setChange] = useState(false)
       <Router>
         <Navbar />
         <Routes>
-          <Route exact path="/GetOtp" element={<GetOtp />} />
+          <Route exact path="/GetOtp" element={<GetOtp host={host}/>} />
           <Route exact path="/" element={<Home />} />
-          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/login" element={<Login host={host}/>} />
           <Route exact path="/blog" element={<Blog />} />
           <Route exact path="/dev" element={<Developer />} />
           <Route exact path="/activity" element={<Activity host={host}/>} />

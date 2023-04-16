@@ -3,9 +3,9 @@
 // import {Rice,Moth,Pomegranate,Papaya,Orange,Muskmelon,Mango,Apple,Grapes,Banana,Chick,Pigeon,Adzuki,Black,Coconut,Kidney,Wheat,Tobacco,Sugarcane,Rubber,Peas,Ground,Cotton,Coffee,Jute,Lentil,Maize,Millet,Tea,Mung,Watermelon} from '../static/Rice.jpg'
 import {useNavigate} from 'react-router-dom'
 
-function CropCard({recommended}) {
+function CropCard({recommended,host}) {
   let navigate=useNavigate();
-  const host="http://localhost:5000"
+  
  let img=recommended?.className?.split(' ')[0]
   return (
     <div className=" my-7 px-5 md:px-0">
