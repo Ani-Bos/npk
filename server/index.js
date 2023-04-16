@@ -59,7 +59,9 @@ app.get('/image/:filename', (req, res) => {
       }
     });
   });
-
+app.get('/',(req,res)=>{
+  res.send("Hello ,Welcome to npk backend");
+})
 app.use(express.static(__dirname+"/public"))
 app.use('/api/auth',require('./routes/auth'))
 app.use('/api/file',require('./routes/file'))
