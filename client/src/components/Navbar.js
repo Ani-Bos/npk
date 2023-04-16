@@ -16,7 +16,7 @@ function Navbar() {
          <div>
          <Link to="/"  className="flex items-center">
             <img
-              src="./images/NPKlogo.png"
+              src="Images/NPKlogo.png"
               className="h-[3rem] mr-3"
               alt="NPK Logo"
             />
