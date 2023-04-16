@@ -44,7 +44,7 @@ const Hero = () => {
               <div className="grid place-items-center ">
                 <img
                   className="rounded-full w-60 h-60"
-                  src="./images/xx.jpeg"
+                  src="Images/xx.jpeg"
                   alt="React Logo"
                 />
               </div>
