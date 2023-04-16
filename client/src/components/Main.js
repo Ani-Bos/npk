@@ -43,9 +43,10 @@ const Feature = () => {
           </div>
           <h5 className="text-lg font-bold mb-4">Crop Prediction</h5>
           <p className="text-gray-500">
-            The interface is made very simple so that it can be used very easily
-            by all of our users and there wont be much of difficulty faced by
-            user and all functionality are made simple.
+            Crop prediction using machine learning helps farmers in making
+            decisions about harvesting, crop management, optimizing yields and
+            reducing costs .We will improve the accuracy of model as we move
+            forward.
           </p>
         </div>
 
@@ -64,8 +65,9 @@ const Feature = () => {
           </div>
           <h5 className="text-lg font-bold mb-4">Disease Prediction</h5>
           <p className="text-gray-500">
-            The segregation of waste is developed using machine learning
-            algorithm using multi classes .
+            Plant disease prediction using machine learning involves analyzing
+            data on plant health and environmental factors to identify potential
+            diseases affecting plants. 
           </p>
         </div>
 
@@ -84,9 +86,7 @@ const Feature = () => {
           </div>
           <h5 className="text-lg font-bold mb-4">Drought Prediction</h5>
           <p className="text-gray-500">
-            The user dashboard is already made now we are planning to build an
-            admin dashboard which will control and mantain all wastes generated
-            by users.
+           This feature will be implemented soon in our product.
           </p>
         </div>
       </div>
