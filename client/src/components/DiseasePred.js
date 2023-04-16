@@ -1,5 +1,5 @@
 import React from 'react'
-import test from '../static/rice.jpg'
+import test from '../static/Rice.jpg'
 function DiseasePred() {
   return (
     <div className='my-7 md:px-0'>
