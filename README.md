@@ -27,6 +27,7 @@ NPK is build using the following technologies
 1. Further fine tune FarmBot on big dataset (using TPU), and improve the Disease prediction to use object dectection (YoLo) and segmentation realtime. 
 2. Predict drought/rainfall using geospatial analysis of Google Earth Engine datasets and DL models.
 3. Predict yield using geospatial data and previous data.
+4. Based on all the user data collected, give personalized recommendation throughout the whole process of farming.
 
 ## Hosting
 
