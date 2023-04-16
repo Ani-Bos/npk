@@ -11,7 +11,8 @@ const { Schema } = mongoose;
    
    phone:{
     type:Number,
-    default:0
+   
+    required:true
    },
    
    createdAt:{

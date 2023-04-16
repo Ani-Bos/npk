@@ -12,7 +12,7 @@ const { mongo } = require('mongoose');
 
 const Disease = require('../model/Diseasepred');
 
-const mongoURI="mongodb://localhost:27017/envisafe?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
+const mongoURI="mongodb://localhost:27017/npk?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
 const storage = new GridFsStorage({
     url: mongoURI,
     file: (req, file) => {
@@ -106,27 +106,7 @@ router.get('/files/:filename', (req, res) => {
 
 // @route GET /image/:filename
 // @desc Display Image
-router.get('/image/:filename', (req, res) => {
-  gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
-    // Check if file
-    if (!file || file.length === 0) {
-      return res.status(404).json({
-        err: 'No file exists'
-      });
-    }
 
-    // Check if image
-    if (file.contentType === 'image/jpeg' || file.contentType === 'image/png' ||file.contentType === 'image/jpg') {
-      // Read output to browser
-      const readstream = gfs.createReadStream(file.filename);
-      readstream.pipe(res);
-    } else {
-      res.status(404).json({
-        err: 'Not an image'
-      });
-    }
-  });
-});
 
 // @route DELETE /files/:id
 // @desc  Delete file
