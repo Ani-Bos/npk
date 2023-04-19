@@ -32,4 +32,5 @@ NPK is build using the following technologies
 ## Hosting
 
 ### Client: https://npk-client.vercel.app/
+### Client on vm: http://34.125.30.99:5000/
 ### GCP Server: http://34.125.50.13:8080

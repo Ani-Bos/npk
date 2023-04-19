@@ -16,7 +16,7 @@ function Developer(){
             <div className="text-center text-gray-500 dark:text-gray-500">
               <img
                 className="mx-auto mb-4 w-36 h-36 rounded-full"
-                src="./images/srj.jpeg"
+                src="Images/srj.jpeg"
                 alt="Bonnie Avatar"
               ></img>
               <h3 className="mb-1 text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-700">
@@ -101,7 +101,7 @@ function Developer(){
             <div className="text-center text-gray-500 dark:text-gray-400">
               <img
                 className="mx-auto mb-4 w-36 h-36 rounded-full"
-                src="./images/schn.jpeg"
+                src="Images/schn.jpeg"
                 alt="Helene Avatar"
               ></img>
               <h3 className="mb-1 text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-700">
@@ -186,7 +186,7 @@ function Developer(){
             <div className="text-center text-gray-500 dark:text-gray-400">
               <img
                 className="mx-auto mb-4 w-36 h-36 rounded-full"
-                src="./images/ksk.png"
+                src="Images/ksk.png"
                 alt="Jese Avatar"
               ></img>
               <h3 className="mb-1 text-2xl font- font-semibold tracking-tight text-gray-900 dark:text-gray-700">
@@ -270,7 +270,7 @@ function Developer(){
             <div className="text-center text-gray-500 dark:text-gray-400">
               <img
                 className="mx-auto mb-4 w-36 h-36 rounded-full"
-                src="./images/AB.png"
+                src="Images/AB.png"
                 alt="Joseph Avatar"
               ></img>
               <h3 className="mb-1 text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-700">
