@@ -20,6 +20,7 @@ import DiseasePredictor from './pages/DiseasePredictor';
 import DisesasePredRes from './pages/DisesasePredRes';
 import Recommended_Crop from './pages/Recommended_Crop';
 import Chat from './pages/Chat';
+import DynamicCard from './components/DynamicCard';
 function App() {
   const [extraDetails, setExtraDetails] = useState({nitrogen:50.55,phosphrous:53.36,potassium:48.14,ph:0.77})
   useEffect(() => {
@@ -38,7 +39,8 @@ const [change, setChange] = useState(false)
     <UserAuthContextProvider>
       <Router>
         <Navbar />
-        <Chat/>
+        <Chat />
+        {/* <DynamicCard/> */}
         <Routes>
           <Route exact path="/GetOtp" element={<GetOtp host={host}/>} />
           <Route exact path="/" element={<Home />} />
