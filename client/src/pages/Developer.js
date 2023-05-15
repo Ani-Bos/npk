@@ -26,7 +26,7 @@ function Developer(){
               <ul className="flex justify-center mt-4 space-x-4">
                 <li>
                   <a
-                    href="#"
+                    href="https://www.facebook.com/profile.php?id=100057790555789"
                     className="text-[#39569c] hover:text-gray-900 dark:hover:text-black"
                   >
                     <svg
@@ -60,7 +60,7 @@ function Developer(){
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="https://github.com/Suraj-Kumar-07"
                     className="text-gray-900 hover:text-gray-900 dark:hover:text-white dark:text-gray-300"
                   >
                     <svg
@@ -79,7 +79,7 @@ function Developer(){
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="https://www.linkedin.com/in/suraj-kumar-2001-05/"
                     className="text-[#ea4c89] hover:text-gray-900 dark:hover:text-white"
                   >
                     <svg
@@ -111,7 +111,7 @@ function Developer(){
               <ul className="flex justify-center mt-4 space-x-4">
                 <li>
                   <a
-                    href="#"
+                    href="https://www.facebook.com/profile.php?id=100035913851615"
                     className="text-[#39569c] hover:text-gray-900 dark:hover:text-white"
                   >
                     <svg
@@ -145,7 +145,7 @@ function Developer(){
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="https://github.com/sksachin7z2"
                     className="text-gray-900 hover:text-gray-900 dark:hover:text-white dark:text-gray-300"
                   >
                     <svg
@@ -164,7 +164,7 @@ function Developer(){
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="https://www.linkedin.com/in/sachin-sharma-92a78120a/"
                     className="text-[#ea4c89] hover:text-gray-900 dark:hover:text-white"
                   >
                     <svg
@@ -196,7 +196,7 @@ function Developer(){
               <ul className="flex justify-center mt-4 space-x-4">
                 <li>
                   <a
-                    href="#"
+                    href="https://www.facebook.com/kdas20"
                     className="text-[#39569c] hover:text-gray-900 dark:hover:text-white"
                   >
                     <svg
@@ -230,7 +230,7 @@ function Developer(){
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="https://github.com/mr-oogway/npk"
                     className="text-gray-900 hover:text-gray-900 dark:hover:text-white dark:text-gray-300"
                   >
                     <svg
@@ -249,7 +249,7 @@ function Developer(){
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="https://www.linkedin.com/in/koushikda/"
                     className="text-[#ea4c89] hover:text-gray-900 dark:hover:text-white"
                   >
                     <svg
@@ -280,7 +280,7 @@ function Developer(){
               <ul className="flex justify-center mt-4 space-x-4">
                 <li>
                   <a
-                    href="#"
+                    href="https://www.facebook.com/aniket.bose.18041"
                     className="text-[#39569c] hover:text-gray-900 dark:hover:text-white"
                   >
                     <svg
@@ -299,7 +299,7 @@ function Developer(){
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="https://twitter.com/aniketb36710165"
                     className="text-[#00acee] hover:text-gray-900 dark:hover:text-white"
                   >
                     <svg
@@ -314,7 +314,7 @@ function Developer(){
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="https://github.com/Ani-Bos"
                     className="text-gray-900 hover:text-gray-900 dark:hover:text-white dark:text-gray-300"
                   >
                     <svg
@@ -333,7 +333,7 @@ function Developer(){
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="https://www.linkedin.com/in/aniket-bose-388083219/"
                     className="text-[#ea4c89] hover:text-gray-900 dark:hover:text-white"
                   >
                     <svg
