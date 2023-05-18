@@ -7,6 +7,7 @@ import RAINFALL from '../static/rainfall'
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ProgressBar from "../components/Loader";
 import LabelBottomNavigation from "../components/BelowNavigation";
+import axios from 'axios'
 function Recommended_Crop({
   setExtraDetails,
   extraDetails,
@@ -29,9 +30,9 @@ function Recommended_Crop({
     navigate("/dashboard");
   };
   const reccomdcrop = async () => {
-    const model = await tf.loadGraphModel("cropmodel/model.json");
+    // const model = await tf.loadGraphModel("cropmodel/model.json");
 
-    console.log(model);
+    // console.log(model);
     //         let img = $('#temp').get(0);
     // let tensorr1=tf.browser.fromPixels(img).resizeNearestNeighbor([224,224]).toFloat();
     // const offset = tf.scalar(255.0);
@@ -58,27 +59,23 @@ function Recommended_Crop({
         const res=d?.address?.state?.split(' ')?.join('')?.toString()?.toUpperCase()
         const rainfall=RAINFALL[res][month]
         console.log(rainfall);
-                    const tensorr=tf.tensor([[parseFloat(extraDetails?.nitrogen) ,parseFloat(extraDetails?.phosphrous),parseFloat(extraDetails?.potassium) ,data?.main?.temp,data?.main?.humidity,0.77,rainfall]])
-            let predictions = await model.predict(tensorr).data();
-            setLoader(80)
-            console.log(typeof extraDetails.potassium);
-            let tensorres = predictions;
-            console.log(tensorres);
-            let top = Array.from(tensorres)
-              .map(function (p, i) {
-                // this is Array.map
-                return {
-                  probability: p,
-                  // we are selecting the value from the obj
-                  description:CROPDETAILS[i],
-                  className: CROP[i],
-                };
-              })
-              .sort(function (a, b) {
-                return b.probability - a.probability;
-              });
-            console.log(top);
-            setCropData(top);
+        const payload={
+          nitrogen:parseFloat(extraDetails?.nitrogen),phosphrous:parseFloat(extraDetails?.phosphrous),potassium:parseFloat(extraDetails?.potassium),temp:data?.main?.temp,humidity:data?.main?.humidity,ph:parseFloat(extraDetails?.ph),rainfall:rainfall
+        }
+    const resp=await axios.post('http://127.0.0.1:5000/predictcrop',payload)
+    const dat=resp.data;
+    let top = Array.from(dat).map(function (p, i) { // this is Array.map
+    return {
+     probability: p,
+     description:CROPDETAILS[i],
+    // we are selecting the value from the obj
+    className:CROP[i]
+    };
+    }).sort(function (a, b) {
+    return b.probability - a.probability;
+    })
+    console.log(top);
+    setCropData(top)
             setLoader(100)
 
           })

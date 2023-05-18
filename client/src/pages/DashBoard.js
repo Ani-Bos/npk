@@ -64,12 +64,28 @@ console.log(month)
 const res=d?.address?.state?.split(' ')?.join('')?.toString()?.toUpperCase()
 const rainfall=RAINFALL[res][month]
 console.log(rainfall);
-            const tensorr=tf.tensor([[50.55 ,53.36 ,48.14 ,data?.main?.temp,data?.main?.humidity,0.77,rainfall]])
-let predictions=await model.predict(tensorr).data()
+//             const tensorr=tf.tensor([[50.55 ,53.36 ,48.14 ,data?.main?.temp,data?.main?.humidity,0.77,rainfall]])
+// let predictions=await model.predict(tensorr).data()
 
-let tensorres= predictions
-console.log(tensorres)
-let top = Array.from(tensorres).map(function (p, i) { // this is Array.map
+// let tensorres= predictions
+// console.log(tensorres)
+// let top = Array.from(tensorres).map(function (p, i) { // this is Array.map
+// return {
+//  probability: p,
+// // we are selecting the value from the obj
+// className:CROP[i]
+// };
+// }).sort(function (a, b) {
+// return b.probability - a.probability;
+// })
+// console.log(top);
+// setCropdata(top[0])
+     const payload={
+      nitrogen:50.55,phosphrous:53.36,potassium:48.14,temp:data?.main?.temp,humidity:data?.main?.humidity,ph:0.77,rainfall:rainfall
+    }
+const resp=await axios.post('http://127.0.0.1:5000/predictcrop',payload)
+const dat=resp.data;
+let top = Array.from(dat).map(function (p, i) { // this is Array.map
 return {
  probability: p,
 // we are selecting the value from the obj
@@ -80,7 +96,6 @@ return b.probability - a.probability;
 })
 console.log(top);
 setCropdata(top[0])
-        
   });
 } else {
  alert( "Geolocation is not supported by this browser.");

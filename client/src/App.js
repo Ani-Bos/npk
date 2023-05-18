@@ -21,6 +21,7 @@ import DisesasePredRes from './pages/DisesasePredRes';
 import Recommended_Crop from './pages/Recommended_Crop';
 import Chat from './pages/Chat';
 import DynamicCard from './components/DynamicCard';
+import DroughPredictor from './pages/DroughPredictor';
 function App() {
   const [extraDetails, setExtraDetails] = useState({nitrogen:50.55,phosphrous:53.36,potassium:48.14,ph:0.77})
   useEffect(() => {
@@ -29,7 +30,7 @@ function App() {
 }, [])
 
 
-const host="http://34.125.50.13:8080"
+const host="http://localhost:5000"
 const [updatedisease, setUpdatedisease] = useState([]);
 const [cropdata, setCropdata] = useState({})
 const [change, setChange] = useState(false)
@@ -49,7 +50,7 @@ const [change, setChange] = useState(false)
           <Route exact path="/dev" element={<Developer />} />
           <Route exact path="/activity" element={<Activity host={host}/>} />
           <Route exact path="/profile" element={<Profile host={host} />} />
-
+          <Route exact path="/droughtPredictor" element={<DroughPredictor host={host} />} />
           <Route
             exact
             path="/dashboard"

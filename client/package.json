@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@alan-ai/alan-sdk-web": "^1.8.43",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@google/earthengine": "^0.1.353",
     "@mui/icons-material": "^5.11.16",
     "@mui/lab": "^5.0.0-alpha.125",
     "@mui/material": "^5.11.16",

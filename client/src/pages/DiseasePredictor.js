@@ -6,6 +6,7 @@ import ProgressBar from "../components/Loader";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie'
+import disease from "../static/disease";
 import {useUserAuth} from "../context/tasks/UserAuthContext";
 import LabelBottomNavigation from "../components/BelowNavigation";
 import axios from "axios";
@@ -55,28 +56,33 @@ function DiseasePredictor({ setUpdatedisease,host }) {
     setLoad(10);
     const model = await tf.loadGraphModel("https://storage.googleapis.com/drought-prediction-bucket/model1.json");
     setLoad(40);
-    console.log(model);
-    let img = $("#temp").get(0);
-    console.log(img)
-    let tensorr1 = tf.browser
-      .fromPixels(img)
-      .resizeNearestNeighbor([224, 224])
-      .toFloat();
-    const offset = tf.scalar(255.0);
-    const normalized = tf.scalar(1.0).sub(tensorr1.div(offset));
+ 
+    // let img = $("#temp").get(0);
+    // console.log(img)
+    // let tensorr1 = tf.browser
+    //   .fromPixels(img)
+    //   .resizeNearestNeighbor([224, 224])
+    //   .toFloat();
+    // const offset = tf.scalar(255.0);
+    // const normalized = tf.scalar(1.0).sub(tensorr1.div(offset));
 
-    const tensorr = normalized.expandDims(0);
-    // let tensorr=tf.browser.fromPixels(img).resizeNearestNeighbor([224,224]).toFloat().div(tf.scalar(255.0)).expandDims()
-    // console.log(tensorr);
-    let predictions = await model.predict(tensorr).softmax().data();
-    setLoad(70);
-    
+    // const tensorr = normalized.expandDims(0);
+    // // let tensorr=tf.browser.fromPixels(img).resizeNearestNeighbor([224,224]).toFloat().div(tf.scalar(255.0)).expandDims()
+    // // console.log(tensorr);
+    // let predictions = await model.predict(tensorr).softmax().data();
+    // setLoad(70);
+    var a=document.getElementById('file').files
+    const formdata= new FormData();
+    formdata.append('file',a[0]);
+    const resp=await axios.post('http://127.0.0.1:5000/predictdisease',formdata)
+    const predictions=resp.data
     let top = Array.from(predictions)
       .map(function (p, i) {
         // this is Array.map
         return {
           probability: p,
           // we are selecting the value from the obj
+          description:disease[i],
           className: CLASSES[i],
         };
       })
