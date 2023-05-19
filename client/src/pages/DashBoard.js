@@ -8,7 +8,7 @@ import {useNavigate} from 'react-router-dom'
 import $ from 'jquery'
 import CROP from '../static/crop'
 import * as tf from '@tensorflow/tfjs';
-
+import ChatBot from '../components/ChatBot'
 import queryString from 'query-string';
 import {useLocation} from 'react-router-dom'
 import Cookies from 'js-cookie'
@@ -128,6 +128,10 @@ setCropdata(top[0])
 
         </div>
       
+      </div>
+      <div>
+        <div className='text-center font-bold my-4'>ChatBot Assistant</div>
+        <ChatBot/>
       </div>
       {/* <LabelBottomNavigation setProfile={setProfile} profile={profile}/> */}
     </div>

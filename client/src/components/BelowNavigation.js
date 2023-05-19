@@ -18,7 +18,7 @@ let navigate=useNavigate();
   };
 
   return (
-    <>
+    <div>
     {
     (!(location.pathname==='/' ||location.pathname==='/login'|| location.pathname==='/GetOtp'))?
     <>
@@ -48,6 +48,6 @@ let navigate=useNavigate();
       <BottomNavigationAction  label="Community" value="community" icon={<Community/>} onClick={()=>{navigate('/community')}}/>
     </BottomNavigation>
     </>:<></>}
-    </>
+    </div>
   );
 }

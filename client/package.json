@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@alan-ai/alan-sdk-web": "^1.8.43",
+    "@chatscope/chat-ui-kit-react": "^1.10.1",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@google/earthengine": "^0.1.353",
@@ -32,6 +33,7 @@
     "react-router-dom": "^6.2.1",
     "react-router-hash-link": "^2.4.3",
     "react-scripts": "5.0.0",
+    "react-simple-chatbot": "^0.6.1",
     "react-top-loading-bar": "^2.1.0",
     "socket.io-client": "^4.6.1",
     "typewriter-effect": "^2.19.0",

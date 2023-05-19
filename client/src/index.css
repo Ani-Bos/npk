@@ -2,6 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Akaya+Telivigala&family=Be+Vietnam+Pro:wght@200&family=Lobster&family=Source+Code+Pro:ital@1&display=swap');
 @tailwind base;
 @tailwind components;
+.btn-primary{
+  @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded;
+}
 @tailwind utilities;
 .app {
     /* background: url("./bg.png") center no-repeat; */
@@ -12,9 +15,7 @@
 .card-overlay {
     background: rgba(0, 0, 0, 0.6);
   }
-  .btn-primary{
-    @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded;
-}
+
 /* 
   body {
   background-color: #fafafa;
@@ -48,4 +49,10 @@
   width: 100vw;
   height: 100vh;
   z-index: 1;
+}
+.cs-main-container .cs-chat-container{
+  z-index: 0 !important;
+}
+.cs-message__content{
+  background-color: rgba(119, 253, 119, 0.479)  !important;
 }
