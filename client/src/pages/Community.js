@@ -2,7 +2,9 @@ import React,{useState,useEffect} from 'react'
 import axios from 'axios'
 import Room from '../components/Room'
 import Cookies from 'js-cookie'
+import Avatar from 'react-avatar'
 import {useNavigate} from 'react-router-dom'
+import { div } from '@tensorflow/tfjs'
 function Community({host}) {
   let navigate=useNavigate()
     const [name, setName] = useState("")
@@ -45,33 +47,44 @@ const handleroominfo=(n,phon)=>{
    
     
   return (
-    <div className='container m-auto'>
+    <div className='container m-auto mb-[6.5rem]'>
         <div className='text-center text-xl font-bold'>Community</div>
+        <hr className='my-3'/>
         <div className='container'>
      
         <div className='w-[80%] m-auto'>
         <div className=''>
         <div>
-        <div className='text-center text-lg'>
+            <div className='flex flex-col justify-center items-center h-'>
+            <div className=''>
+            <Avatar name={name}/>
+            </div>
+        <div className='text-center text-xl font-bold my-4 text-green-600'>
            {
             name+(phone.toString()).slice(7)
            }
         </div>
+            </div>
+           
         <div className='font-bold text-center'>
             People under the range
         </div>
         <div >
         <div className='font-bold my-3' >
-            Messages
+           Conversations
         </div>
 </div>
        <div>
         {
             userall.map((e,i)=>{
                 return (
-                    <div key={i} onClick={()=>{handleroominfo(e?.name,e?.phone)}}>
+                    <>
+                       
+                    {(e?.name?.split(' ')[0]!==name) ?  <div className='flex gap-4 items-center'> <Avatar size='50px' name={e?.name}/> <div className='text-lg font-semibold' key={i} onClick={()=>{handleroominfo(e?.name,e?.phone)}}>
                         {e?.name}
-                    </div>
+                    </div>  </div> : <div></div> }
+                    <hr className='my-1'/>
+                    </>
                 )
             })
         }

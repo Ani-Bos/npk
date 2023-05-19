@@ -17,7 +17,11 @@ import {useUserAuth} from "../context/tasks/UserAuthContext";
 import axios from 'axios'
 import Activity from '../components/Activity'
 import Profile from '../components/Profile'
+import CROPDETAILS from '../static/cropdetails'
+
+
 function DashBoard({cropdata,setCropdata,change,host}) {
+
 const [name, setName] = useState("")
 const [phone, setPhone] = useState("")
 const {user}=useUserAuth()
@@ -40,9 +44,9 @@ const getuserinfo=async()=>{
   
  
       const reccomdcrop=async()=>{
-        const model = await tf.loadGraphModel('cropmodel/model.json');
+        // const model = await tf.loadGraphModel('cropmodel/model.json');
         
-        console.log(model);
+        // console.log(model);
 //         let img = $('#temp').get(0);
 // let tensorr1=tf.browser.fromPixels(img).resizeNearestNeighbor([224,224]).toFloat();
 // const offset = tf.scalar(255.0);
@@ -89,6 +93,7 @@ let top = Array.from(dat).map(function (p, i) { // this is Array.map
 return {
  probability: p,
 // we are selecting the value from the obj
+description:CROPDETAILS[i],
 className:CROP[i]
 };
 }).sort(function (a, b) {
