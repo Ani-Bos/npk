@@ -8,7 +8,7 @@ function Weather() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((e)=>{
             fetch(
-                `https://api.openweathermap.org/data/2.5/weather?lat=${e.coords.latitude}&lon=${e.coords.longitude}&appid=1ae67afbcfd2c8ace165befd341a1d70&units=metric`
+                `http://api.openweathermap.org/data/2.5/weather?lat=${e.coords.latitude}&lon=${e.coords.longitude}&appid=1ae67afbcfd2c8ace165befd341a1d70&units=metric`
               )
                 .then((res) => res.json())
                 .then((data) => {setWeather(data);console.log(data)})
