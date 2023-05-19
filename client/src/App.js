@@ -22,6 +22,8 @@ import Recommended_Crop from './pages/Recommended_Crop';
 import Chat from './pages/Chat';
 import DynamicCard from './components/DynamicCard';
 import DroughPredictor from './pages/DroughPredictor';
+import Community from './pages/Community';
+import Room from './components/Room';
 function App() {
   const [extraDetails, setExtraDetails] = useState({nitrogen:50.55,phosphrous:53.36,potassium:48.14,ph:0.77})
   useEffect(() => {
@@ -51,6 +53,8 @@ const [change, setChange] = useState(false)
           <Route exact path="/activity" element={<Activity host={host}/>} />
           <Route exact path="/profile" element={<Profile host={host} />} />
           <Route exact path="/droughtPredictor" element={<DroughPredictor host={host} />} />
+          <Route exact path="/community" element={<Community host={host} />} />
+          <Route exact path="/room" element={<Room host={host} />} />
           <Route
             exact
             path="/dashboard"

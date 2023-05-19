@@ -102,4 +102,13 @@ router.put('/updateuser',fillter,async(req,res)=>{
     res.status(500).send("Internal Server Error Occured");
     }
 })
+router.get('/getAllUser',async(req,res)=>{
+    try {
+      const alluser=await User.find();
+      res.json(alluser);
+    } catch (error) {
+      console.log(error);
+      res.status(500).send('Internal Server Error');
+    }
+})
 module.exports = router

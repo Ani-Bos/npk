@@ -7,6 +7,7 @@ import Home from '@mui/icons-material/Home';
 // import Home from '@mui/icons-material/Home';
 import FavoriteIcon from '@mui/icons-material/FavoriteRounded';
 import Profile from '@mui/icons-material/AccountCircle';
+import Community from '@mui/icons-material/Message'
 import { useNavigate ,useLocation} from 'react-router-dom';
 export default function LabelBottomNavigation({profile,setProfile}) {
   let location=useLocation();
@@ -44,6 +45,7 @@ let navigate=useNavigate();
         onClick={()=>{navigate('/dev')}}
       />
       <BottomNavigationAction  label="Profile" value="profile" icon={<Profile/>} onClick={()=>{navigate('/profile')}}/>
+      <BottomNavigationAction  label="Community" value="community" icon={<Community/>} onClick={()=>{navigate('/community')}}/>
     </BottomNavigation>
     </>:<></>}
     </>

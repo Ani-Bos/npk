@@ -4,8 +4,11 @@ const path = require('path');
 const crypto = require('crypto');
 const mongoose = require('mongoose');
 const multer = require('multer');
+const { createServer } = require("http");
+const { Server } = require("socket.io");
 const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
+const {addUser,getuserinroom,removeUser,getUser,isEmpty} =require('./users');
 // const methodOverride = require('method-override');
 const filter=require('./middleware/fillter')
 const { mongo } = require('mongoose');
@@ -24,6 +27,8 @@ const app=express();
 app.use(cors({
   origin: 'http://localhost:3000'
 }));
+
+
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 
@@ -40,6 +45,64 @@ conn.once('open', () => {
   gfs.collection('uploads');
 });
 
+const httpServer = createServer(app);
+const io = new Server(httpServer, {
+    cors: {
+        // origin: "http://localhost:3000",
+        origin:"http://localhost:3000",
+        methods: ["GET", "POST"]
+      }
+ });
+
+ io.on("connection", (socket) => {
+  socket.on("join",({name,room},callback)=>{
+   
+    const {error,user}=addUser({id:socket.id,name,room});
+  console.log(user,name)
+    if(error)
+    return callback(error)
+
+    socket.join(user.room);//useris in room
+    io.to(user.room).emit('roomData',{
+      users:getuserinroom(user.room)
+    })
+ 
+ 
+    
+    callback();
+  });
+
+  //whiteboard
+
+
+
+  // messages
+  socket.on('sendMessage',({message},callback)=>{
+    const user=getUser(socket.id);
+console.log(user)
+    io.to(user.room).emit('message',{
+      user:user.name,text:message});
+      callback();
+    });
+   
+  
+  // code
+
+
+  //disconnect
+  socket.on("disconnect",()=>{
+    const user=removeUser(socket.id);
+    if(user){
+    const check=isEmpty(user.room);
+    
+    
+      io.to(user.room).emit('roomData',{
+        
+        users:getuserinroom(user.room)
+      })
+  }
+  })
+});
 // Create storage engine
 app.get('/image/:filename', (req, res) => {
     gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
@@ -70,6 +133,6 @@ app.use('/api/auth',require('./routes/auth'))
 app.use('/api/file',require('./routes/file'))
 
 
-app.listen(PORT,()=>{
+httpServer.listen(PORT,()=>{
     console.log(`Server Started at http://localhost:${PORT}`)
 })
