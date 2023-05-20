@@ -30,13 +30,16 @@ function Community({host}) {
             setUserall(data);
     }
     
-const handleroominfo=(n,phon)=>{
+const handleroominfo=async(n,phon)=>{
     setChangeroom(!changeroom)
     let room=[phon.toString(),phone.toString()]
     room.sort();
     let roominfo=room[0]+room[1];
     setRoom(roominfo)
     console.log(roominfo)
+    const create=await axios.post(`${host}/api/chat/addchat`,{room:roominfo,message:{text:"Welcome",user:"admin"}});
+    const data=create.data;
+    console.log(data);
     navigate(`/room?name=${name+(phone.toString()).slice(7)}&room=${roominfo}&other=${n}`);
 }
     useEffect(() => {
