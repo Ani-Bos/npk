@@ -24,6 +24,16 @@ import DynamicCard from './components/DynamicCard';
 import DroughPredictor from './pages/DroughPredictor';
 import Community from './pages/Community';
 import Room from './components/Room';
+// import TemplateChat from './components/templatechat';
+import TemplateChat from './components/ChatBot';
+
+const steps = [
+  {
+    id: "0",
+    message: "Hey Geek!",
+    end: true,
+  },
+];
 function App() {
   const [extraDetails, setExtraDetails] = useState({nitrogen:50.55,phosphrous:53.36,potassium:48.14,ph:0.77})
   useEffect(() => {
@@ -38,21 +48,27 @@ const [cropdata, setCropdata] = useState({})
 const [change, setChange] = useState(false)
 
   return (
-   
     <UserAuthContextProvider>
       <Router>
         <Navbar />
         <Chat />
+        {/* <TemplateChat steps ={steps} /> */}
+      
         {/* <DynamicCard/> */}
+        {/* <TemplateChat/> */}
         <Routes>
-          <Route exact path="/GetOtp" element={<GetOtp host={host}/>} />
+          <Route exact path="/GetOtp" element={<GetOtp host={host} />} />
           <Route exact path="/" element={<Home />} />
-          <Route exact path="/login" element={<Login host={host}/>} />
+          <Route exact path="/login" element={<Login host={host} />} />
           <Route exact path="/blog" element={<Blog />} />
           <Route exact path="/dev" element={<Developer />} />
-          <Route exact path="/activity" element={<Activity host={host}/>} />
+          <Route exact path="/activity" element={<Activity host={host} />} />
           <Route exact path="/profile" element={<Profile host={host} />} />
-          <Route exact path="/droughtPredictor" element={<DroughPredictor host={host} />} />
+          <Route
+            exact
+            path="/droughtPredictor"
+            element={<DroughPredictor host={host} />}
+          />
           <Route exact path="/community" element={<Community host={host} />} />
           <Route exact path="/room" element={<Room host={host} />} />
           <Route
@@ -70,12 +86,19 @@ const [change, setChange] = useState(false)
           <Route
             exact
             path="/disease_predictor"
-            element={<DiseasePredictor host={host} setUpdatedisease={setUpdatedisease} />}
+            element={
+              <DiseasePredictor
+                host={host}
+                setUpdatedisease={setUpdatedisease}
+              />
+            }
           />
           <Route
             exact
             path="/disease_predictor_result"
-            element={<DisesasePredRes host={host} diseasedata={updatedisease} />}
+            element={
+              <DisesasePredRes host={host} diseasedata={updatedisease} />
+            }
           />
           <Route
             exact
@@ -92,7 +115,7 @@ const [change, setChange] = useState(false)
             }
           />
         </Routes>
-        <LabelBottomNavigation/>
+        <LabelBottomNavigation />
       </Router>
     </UserAuthContextProvider>
   );
