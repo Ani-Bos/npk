@@ -131,6 +131,7 @@ app.get('/',(req,res)=>{
 app.use(express.static(__dirname+"/public"))
 app.use('/api/auth',require('./routes/auth'))
 app.use('/api/file',require('./routes/file'))
+app.use('/api/chat',require('./routes/message'))
 
 
 httpServer.listen(PORT,()=>{

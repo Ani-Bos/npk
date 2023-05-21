@@ -5,8 +5,9 @@ import Message from './Message'
 import Cookies from 'js-cookie'
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import queryString from 'query-string'
+import axios from 'axios'
 let socket;
-function Room() {
+function Room({host}) {
     let navigate=useNavigate();
     
     
@@ -14,9 +15,18 @@ function Room() {
     const [users, setUsers] = useState("");
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState([]);
-    const ENDPOINT="http://localhost:5000";
+    const ENDPOINT=host;
 
     const {name,room,other} =queryString.parse(location.search);
+    const getchat=async()=>{
+        const chatall = await axios.get(`${host}/api/chat/getallchat/${room}`);
+        const data=chatall?.data;
+        setMessages(data?.allchat?.chat)
+        // console.log(data)
+    }
+    useEffect(() => {
+     getchat();
+    }, [])
     
     useEffect(() => {
       
@@ -64,11 +74,16 @@ function Room() {
     }, [messages]);
     
     
-        const handlesend=()=>{
+        const handlesend=async()=>{
          
             if(message){
               socket.emit('sendMessage',{message},()=>setMessage(''))
+              const resp=await axios.put(`${host}/api/chat/updatechat`,{room:room,message:{text:message,user:name.toLowerCase()}});
+              const data=resp.data;
+              console.log(data);
             }
+           
+
         }
     
   return (
