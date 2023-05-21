@@ -102,7 +102,7 @@ function DiseasePredictor({ setUpdatedisease,host }) {
   };
   return (
     <div className="xs:container m-auto px-5 bg-gray-100 h-[100vh]">
-      <img className="hidden"  alt="yoyo" id="temp" />
+      <img className="hidden" alt="yoyo" id="temp" />
       <div>
         {/* <button
           className="font-semibold"
@@ -114,36 +114,42 @@ function DiseasePredictor({ setUpdatedisease,host }) {
         </button> */}
       </div>
       <div className="text-center font-bold py-7 text-xl">Upload Image</div>
-      <div class="grid md:grid-cols[30%_70%] grid-cols-[40%_60%] m-auto h-[20vh] md:h-[40vh] overflow-hidden bg-white border border-gray-200 rounded-lg shadow flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-          <div
-            className="border border-r-[1px] flex flex-col"
-            style={{ backgroundImage: `url(${img})`, backgroundSize: "contain" }}
-          >
-            {/* <img class=" rounded-t-lg  md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" src={img} alt=""/> */}
-          </div>
-              <div class="flex flex-col justify-between p-4 leading-normal">
-                <div className="flex flex-col gap-4">
-                  <input
-                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                    id="file"
-                    type="file"
-                    onChange={handlechange}
-                  />
-                  <div>
-                    <button
-                      onClick={handlepredict}
-                      className="px-1 py-1 bg-slate-400 rounded text-sm"
-                    >
-                      Predict disease
-                    </button>
-                  </div>
-                </div>
-        </div>  
+      <div className="w-60 h-60 justify-center align-center mx-5">
+        <img src="Images/nf.png"></img>
       </div>
-        <div className="my-6">
-          <ProgressBar progressPercentage={load} />
+      <div class="grid md:grid-cols[30%_70%] grid-cols-[40%_60%] m-auto h-[20vh] md:h-[40vh] overflow-hidden bg-white border border-gray-200 rounded-lg shadow flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-green-400 dark:hover:bg-green-400">
+        <div
+          className="border border-r-[1px] flex flex-col"
+          style={{
+            backgroundImage: `url(${img})`,
+            backgroundSize: "contain",
+          }}
+        >
+          {/* <img class=" rounded-t-lg  md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" src={img} alt=""/> */}
         </div>
-        {/* <LabelBottomNavigation/> */}
+        <div class="flex flex-col justify-between p-4 leading-normal">
+          <div className="flex flex-col gap-4">
+            <input
+              class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-blue-900 dark:border-gray-600 dark:placeholder-gray-400"
+              id="file"
+              type="file"
+              onChange={handlechange}
+            />
+            <div>
+              <button
+                onClick={handlepredict}
+                className="w-50 px-1 py-1 text-sm font-semibold text-white transition-colors duration-300 bg-blue-500 rounded-md shadow hover:bg-blue-600 focus:outline-none justify-center m-auto"
+              >
+                Predict disease
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="my-6">
+        <ProgressBar progressPercentage={load} />
+      </div>
+      {/* <LabelBottomNavigation/> */}
     </div>
   );
 }

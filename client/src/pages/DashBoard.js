@@ -117,13 +117,16 @@ setCropdata(top[0])
       }, [])
       
   return (
-    <div className='container m-auto  mb-[5rem] bg-gray-50'>
+    <div className='container m-auto  mb-[5rem] bg-green-200'>
       <div className='font-semibold text-xl pt-6 px-5  mb-7'>
-        Welcome, <span className='font-bold text-green-900'>{name}</span> 
+        Welcome, <span className='font-bold text-black'>{name}</span> 
       </div>
       <Weather/>
     
-      <CropCard recommended={cropdata} host={host}/>
+      <CropCard recommended={cropdata} host={host} />
+      <div>
+        <h3 className='bg-gray-50 text-2xl font-bold text-center pt-6'>Prediction</h3>
+      </div>
       <div className='grid grid-cols-2 gap-2  px-5 bg-gray-50'>
         <div onClick={()=>navigate('/disease_predictor')}>
         <DiseasePred/>
@@ -134,10 +137,10 @@ setCropdata(top[0])
         </div>
       
       </div>
-      <div>
+      {/* <div>
         <div className='text-center font-bold my-4'>ChatBot Assistant</div>
         <ChatBot/>
-      </div>
+      </div> */}
       {/* <LabelBottomNavigation setProfile={setProfile} profile={profile}/> */}
     </div>
   )

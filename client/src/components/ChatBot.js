@@ -2,7 +2,6 @@ import { useState } from 'react'
 // import dotenv from 'dotenv'
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import { MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator } from '@chatscope/chat-ui-kit-react';
-// import { ThemeProvider } from "styled-components";
 
 // "Explain things like you would to a 10 year old learning how to code."
 const systemMessage = { //  Explain things like you're talking to a software professional with 5 years of experience.
@@ -120,8 +119,7 @@ function TemplateChat() {
           />
         )}
       </div>
-      {showChat && (<div className="px-4 rounded-md" style={{ height: "50vh" }}>
-        {/* <ThemeProvider theme={theme}> */}
+      <div className="px-4 rounded-md" style={{ height: "50vh" }}>
         <MainContainer>
           <ChatContainer>
             <MessageList
@@ -138,9 +136,7 @@ function TemplateChat() {
             <MessageInput placeholder="Type message here" onSend={handleSend} />
           </ChatContainer>
           </MainContainer>
-        {/* </ThemeProvider> */}
       </div>
-    )}      
     </div>
   );
 }
