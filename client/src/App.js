@@ -26,6 +26,7 @@ import Community from './pages/Community';
 import Room from './components/Room';
 // import TemplateChat from './components/templatechat';
 import TemplateChat from './components/ChatBot';
+import BotGPT from './pages/BotGPT';
 
 const steps = [
   {
@@ -51,7 +52,7 @@ const [change, setChange] = useState(false)
     <UserAuthContextProvider>
       <Router>
         <Navbar />
-        <Chat />
+        {/* <Chat /> */}
         {/* <TemplateChat steps ={steps} /> */}
       
         {/* <DynamicCard/> */}
@@ -64,6 +65,7 @@ const [change, setChange] = useState(false)
           <Route exact path="/dev" element={<Developer />} />
           <Route exact path="/activity" element={<Activity host={host} />} />
           <Route exact path="/profile" element={<Profile host={host} />} />
+          <Route exact path ="/chatbot" element = {<BotGPT/>}/>
           <Route
             exact
             path="/droughtPredictor"

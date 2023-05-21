@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const footer = () => {
   return (
     <div>
@@ -7,14 +7,12 @@ const footer = () => {
         <div className="w-full">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-2 lg:grid-cols-4 text-center">
             <div>
-              <h3 className="mb-6  font-semibold  uppercase text-black">
-                Company
-              </h3>
+              <h3 className="mb-6  font-semibold  uppercase text-black">NPK</h3>
               <ul className="text-black dark:text-black">
                 <li className="mb-2">
-                  <a href="/" className=" hover:underline">
-                    About
-                  </a>
+                  <Link to="/dev" className=" hover:underline">
+                    Our Team
+                  </Link>
                 </li>
                 <li className="mb-2">
                   <a href="/" className="hover:underline">

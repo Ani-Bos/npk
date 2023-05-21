@@ -28,7 +28,7 @@ function Weather() {
   return (
     <>
    
-        <div className="card bg-gray-100 text-black font-bold  grid  grid-cols-2 items-center">
+        <div className="card bg-white text-black font-bold  grid  grid-cols-2 items-center shadow-xl mx-3 rounded-xl">
         
           <div className="flex flex-col justify-center pb-3">
           <img

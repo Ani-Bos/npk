@@ -120,7 +120,7 @@ function TemplateChat() {
           />
         )}
       </div>
-      {showChat && (<div className="px-4 rounded-md" style={{ height: "50vh" }}>
+      {showChat && (<div className="px-4 rounded-md" style={{ height: "90vh" }}>
         <ThemeProvider theme={theme}>
         <MainContainer>
           <ChatContainer>
