@@ -87,45 +87,58 @@ function Room({host}) {
         }
     
   return (
-    <div className='container m-auto'>
-        <div className=" w-[80%] border-2 h-[50%] z-10 m-auto">
-            <div className='flex justify-between'>
-            <div className='font-bold text-lg py-2 px-1'>
-                {
-                    other
-                }
-            </div>
-            <div>
+    <div className="container m-auto">
+      <div className=" w-[80%] border-2 h-[50%] z-10 m-auto">
+        <div className="flex justify-between">
+          <div className="font-bold text-lg py-2 px-1">{other}</div>
+          <div>
             <div className="py-2 px-1">
-        <button
-          className="font-semibold"
-          onClick={() => {
-            navigate("/community");
+              <button
+                className="font-semibold"
+                onClick={() => {
+                  navigate("/community");
+                }}
+              >
+                <ArrowBackIosNewIcon /> Back{" "}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div
+          className="h-[60vh] overflow-y-scroll"
+          style={{
+            background: `url('Images/xxxxxx.png')`,
+            backgroundSize: "contain",
           }}
         >
-          <ArrowBackIosNewIcon /> Back{" "}
-        </button>
+          {messages.map((message, i) => {
+            return (
+              <div key={i}>
+                <Message name={name} message={message} />
+              </div>
+            );
+          })}
+        </div>
+        <div className="flex">
+          <input
+            placeholder="Type message..."
+            value={message}
+            className="w-[100vw] px-3"
+            type="text"
+            name="input"
+            id="input"
+            onChange={(e) => {
+              setMessage(e.target.value);
+            }}
+          />
+          <button onClick={handlesend} className="btn-primary">
+            Send
+          </button>
+        </div>
       </div>
-            </div>
-            </div>
-           
-    <div className='h-[60vh] bg-yellow-100 overflow-y-scroll'>
-      {
-        messages.map((message,i)=>{
-         return <div key={i}><Message name={name} message={message}/></div>
-        })
-      }
     </div>
-    <div className='flex'>
-      <input placeholder='Type message...' value={message} className='w-[100vw] px-3' type="text" name="input" id="input" onChange={(e)=>{
-        setMessage(e.target.value);
-      }} />
-      <button onClick={handlesend} className='btn-primary'>Send</button>
-    </div>
-   </div>
-    </div>
-
-  )
+  );
 }
 
 export default Room
