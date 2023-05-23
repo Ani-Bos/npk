@@ -65,9 +65,11 @@ const stateinfo=await fetch(`https://nominatim.openstreetmap.org/reverse?format=
 const d=await stateinfo.json();
 let month=new Date().toString().split(' ')[1].toUpperCase()
 console.log(month)
-const res=d?.address?.state?.split(' ')?.join('')?.toString()?.toUpperCase()
+    const res = d?.address?.state?.split(' ')?.join('')?.toString()?.toUpperCase()
+    console.log(res);
 const rainfall=RAINFALL[res][month]
-console.log(rainfall);
+    console.log(rainfall , res);
+    
 //             const tensorr=tf.tensor([[50.55 ,53.36 ,48.14 ,data?.main?.temp,data?.main?.humidity,0.77,rainfall]])
 // let predictions=await model.predict(tensorr).data()
 

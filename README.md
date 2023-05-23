@@ -31,10 +31,6 @@ NPK is build using the following technologies
 
 ## Hosting
 
-### Both Client side and Backend is deployed on: http://34.125.50.13:8080
+### Both Client side and Backend is deployed on: http://34.118.240.147:8080
 
-### Client: https://npk-client.vercel.app/
-### Client on vm: http://34.125.30.99:5000/ (Imp: This site is shifted to the same site as backend)
-
-### GCP Server: http://34.125.50.13:8080
 

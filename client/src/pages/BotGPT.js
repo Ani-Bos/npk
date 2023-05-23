@@ -32,7 +32,7 @@ const theme = {
 function BotGPT() {
   // dotenv.config()
   console.log(process.env.REACT_APP_APIKEY);
-  const API_KEY = process.env.REACT_APP_APIKEY;
+  const API_KEY = "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";
   const [messages, setMessages] = useState([
     {
       message: "Hello, I'm ChatBot for NPK",
