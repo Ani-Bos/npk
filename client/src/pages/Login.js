@@ -72,6 +72,9 @@ const handlesignin=async()=>{
             <h3 className="my-4 text-2xl text-center font-semibold text-gray-700">
               Account Login
             </h3>
+              <h6 className="my-4 text-md text-center font-light text-gray-700">
+              If you are already logged in No need to input name
+            </h6>
             {error && <Alert variant="danger">{error}</Alert>}
             <Form
               className="flex flex-col space-y-5"

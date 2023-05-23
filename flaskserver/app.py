@@ -45,7 +45,7 @@ print('Model loaded. Check http://127.0.0.1:5000/')
 
 # Model saved with Keras model.save()
 CROP_MODEL_PATH = 'model/croppredictor.h5'
-DISEASE_MODEL_PATH = 'model/finetunedmodel.h5'
+DISEASE_MODEL_PATH = 'model/model.h5'
 model1=load_model(CROP_MODEL_PATH)
 model2=load_model(DISEASE_MODEL_PATH)
         # Necessary
