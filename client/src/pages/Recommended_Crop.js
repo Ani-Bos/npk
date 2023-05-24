@@ -90,7 +90,7 @@ function Recommended_Crop({
   }, []);
  
   return (
-    <div className="container m-auto px-7">
+    <div className="container m-auto px-7 mb-[5rem]">
       <div className="text-center font-bold text-xl">
         Recommended Crop for you
       </div>
