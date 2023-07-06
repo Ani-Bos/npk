@@ -1,5 +1,5 @@
 # NPK
-### An AI focused personal farming assistant application.
+### An AI focused Progressive Web app for personal farming assistant application.
 
 ## Problem : 
 Access to information and training on best farming practices, crop diversification, and environmental sustainability is critical for small farmers to optimize their yields, increase their income, and ensure long-term sustainability. However, small farmers often face challenges in accessing such information and training. As a result, small farmers may be unable to implement sustainable and efficient farming practices, leading to lower crop yields and income. To address this challenge, there is a need for ICT based solution.
@@ -31,6 +31,22 @@ NPK is build using the following technologies
 
 ## Hosting
 
-### Both Client side and Backend is deployed on: http://34.118.240.147:8080
+### Both Client side and Backend is deployed during Hackathon on: http://34.118.240.147:8080
+
+## Screenshot
+![aa](https://github.com/Ani-Bos/npk/assets/97694136/201d16b8-7993-4640-881c-eb4b9dafd120)
+![bb](https://github.com/Ani-Bos/npk/assets/97694136/34dcf665-021c-4040-8f81-b33e2bc85142)
+![cc](https://github.com/Ani-Bos/npk/assets/97694136/f424aa4c-d0ff-40a7-9e1a-d177e76a100b)
+![dd](https://github.com/Ani-Bos/npk/assets/97694136/7f906e56-f107-4381-a63c-a74c7cf37b5c)
+![ee](https://github.com/Ani-Bos/npk/assets/97694136/3bbf2db5-8be2-46c0-ac99-f99abe24a8df)
+![ff](https://github.com/Ani-Bos/npk/assets/97694136/d81a167b-4706-4226-aaf1-9761f4c2d432)
+![hh](https://github.com/Ani-Bos/npk/assets/97694136/1c72ca72-6e36-4ed3-9ba7-543728125682)
+![jj](https://github.com/Ani-Bos/npk/assets/97694136/6e146a63-d99f-489e-baa6-11ff600bbaf3)
+![kk](https://github.com/Ani-Bos/npk/assets/97694136/2cee3e04-921a-45d5-b27a-b5c6b7727c18)
+
+
+
+
+
 
 
